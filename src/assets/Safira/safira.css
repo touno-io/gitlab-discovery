@@ -1,0 +1,13 @@
+@font-face{
+    font-family: 'Safira Sans';
+    src: url('dist/eot/SafiraSans-Regular.eot');
+    src: url('dist/eot/SafiraSans-Regular.eot') format('embedded-opentype'),
+         url('dist/woff/SafiraSans-Regular.woff') format('woff'),
+         url('dist/ttf/SafiraSans-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+*{
+	font-family: 'Safira Sans', sans-serif;
+}
