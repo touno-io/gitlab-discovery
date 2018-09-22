@@ -16,7 +16,7 @@ GitLab Discovery is a standalone and continuous development app for GitLab built
 <p>
 We developed this app initially to make our team work easier, but we thought it would be cool to share with the community and everyone who works with GitLab. We strive to create an interface as close as possible to the design language created by GitLab by adapting our NUIverse framework.
 </p>
-## Where do I get this?
+<h2>Where do I get this?</h2>
 
 <p>For now GitLab Discovery is not yet ready to be used by other people, however you can download the source code and compile yourself, initially it was project only to work in Windows.</p>
 
