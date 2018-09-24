@@ -16,6 +16,19 @@ GitLab Discovery is a standalone and continuous development app for GitLab built
 <p>
 We developed this app initially to make our team work easier, but we thought it would be cool to share with the community and everyone who works with GitLab. We strive to create an interface as close as possible to the design language created by GitLab by adapting our NUIverse framework.
 </p>
+
+<h2>Why?</h2>
+
+- Create seamless and seamless integration with GitLab resources
+- Offer a better experience for the company's clients
+- Offer features that GitHub Desktop does not offer
+- Because GitHub Desktop was built for GitHub not for GitLab
+- Offer more convenience and experience (I know how to work with Git, however I do not love working with terminals, so just as I do there are other people with the same opinion)
+- Why is it right, the app is being built to help the community and to those who use the service, so in my view it is correct you install, log in and use. Do not have to reconfigure the App from a competing service to offer a better experience while interacting with the service
+- Respect UX! The Ux of GitLab was designed for them, their users are familiar, so the App aims to do this too, be as faithful as possible to the ux of the platform.
+- Bring more users, although I do not work for them, I know that when you offer a good allied service to a decent desktop client you can get more users, and regardless of whether new users know or do not like terminal can interfere in the choice of service
+- Features and more features - My idea is to create a multiplatform App, so I want it to be in Windows, Linux and MacOS, so I would like the App to be as complete as possible so that it
+
 <h2>Where do I get this?</h2>
 
 <p>For now GitLab Discovery is not yet ready to be used by other people, however you can download the source code and compile yourself, initially it was project only to work in Windows.</p>
