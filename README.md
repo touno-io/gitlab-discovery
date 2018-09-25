@@ -35,21 +35,27 @@ We developed this app initially to make our team work easier, but we thought it 
 
 <strong>Note: To use the Direct Source App you need to do the following:</strong>
 
-1- Create an access [token](https://gitlab.com/profile/personal_access_tokens) at with all scopes <br>
-2- Create config.js in src /
-``` 
+1. Create an access [token](https://gitlab.com/profile/personal_access_tokens) at with all scopes
+2. Create a `config.js` file in the `src/` directory
+```js
 export default{ 
   username: 'your_username', 
   token: 'Your_token', 
   name_user_with_space: 'Your_name' 
 } 
 ```
-
-3- Create projects file in src /
-``` 
+3. Create projects file in the `src/` directory
+```js
 {"lastProject":[],"projects":[]} 
 ```
-4 - npm install and npm run serve: electron
+4. Install dependencies:
+```
+npm install
+```
+5. Run the application
+```
+npm run serve:electron
+```
 
 # License
 
