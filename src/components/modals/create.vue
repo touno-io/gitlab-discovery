@@ -1,11 +1,11 @@
 <template>
-  <modal title="Criar um novo repositório">
+  <modal title="New repository">
     <div class="p-4 position-relative">
       <div
         v-if="createRepo === 'creating'"
         id="progress-window"
         class="px-6">
-        <span class="text-center d-block mb-2 h2">Criando {{ name_repo }}</span>
+        <span class="text-center d-block mb-2 h2">Creating {{ name_repo }}</span>
         <div class="progress">
           <div
             id="progressbar-clone"
@@ -16,20 +16,20 @@
       <div
         :class="{creating:createRepo == 'creating'}"
         class="mb-3">
-        <span class="mb-1">Nome</span>
+        <span class="mb-1">Name</span>
         <input
           id="name_repo"
           v-model="name_repo"
           type="text"
           class="mb-2"
-          placeholder="Nome do repositório">
-        <span class="mb-1">Descrição</span>
+          placeholder="Repository name">
+        <span class="mb-1">Description</span>
         <input
           id="desc_repo"
           v-model="desc_repo"
           type="text"
           class="mb-2"
-          placeholder="Descrição do repositório">
+          placeholder="Repository description">
         <div class="mb-2">
           <span class="mb-1">Folder location</span>
           <input
@@ -48,7 +48,7 @@
             v-model="initialize_repo_readme"
             type="checkbox"
             class="d-inline-block">
-            <span class="mb-1">Iniciar este repositório com um Readme.md</span>
+            <span class="mb-1">Initialize this repository with a README.md</span>
           </label>
         </div>
         <div class="mb-2">
@@ -63,7 +63,7 @@
           </select>
         </div>
         <div class="mb-2">
-          <span class="mb-1">Licença</span>
+          <span class="mb-1">License</span>
           <select
             id="git-license-list"
             v-model="licenseSelected">
@@ -83,11 +83,11 @@
       <button
         id="clone-btn"
         class="button primary"
-        @click="gitInit()">Criar repositório</button>
+        @click="gitInit()">Create repository</button>
       <button
         id="cancel-btn"
         class="button alternative"
-        @click="close()">Cancelar</button>
+        @click="close()">Cancel</button>
     </div>
   </modal>
 </template>
