@@ -33,10 +33,10 @@ export default {
           title: 'File',
           id: 'file',
           subMenu: [
-            { title: 'New repositorie', id: 'new-repo', hotkey: '' },
-            { title: 'Add local repositorie', id: 'add-local-repo', hotkey: '' },
-            { title: 'Clone repositorie', id: 'clone-repo', hotkey: '' },
-            { title: 'Opitions', id: '', hotkey: '' },
+            { title: 'New repository', id: 'new-repo', hotkey: '' },
+            { title: 'Add local repository', id: 'add-local-repo', hotkey: '' },
+            { title: 'Clone repository', id: 'clone-repo', hotkey: '' },
+            { title: 'Options', id: '', hotkey: '' },
             { title: 'Exit', id: 'exit', hotkey: '' },
           ],
         },
@@ -64,7 +64,7 @@ export default {
             { title: 'Reset zoom', id: '', hotkey: '' },
             { title: 'Zoom in', id: '', hotkey: '' },
             { title: 'Zoom out', id: '', hotkey: '' },
-            { title: 'Troggle developer tools', id: 'dev-tools', hotkey: '' },
+            { title: 'Toggle developer tools', id: 'dev-tools', hotkey: '' },
           ],
         },
         {
