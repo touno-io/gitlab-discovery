@@ -274,7 +274,7 @@
         v-if="projectsFound !== null"
         v-show="showTabStatus === 'history'" />
       <!-- No repositories is a component for show message of projects not fond and show options for clone, create or add a local project.   -->
-      <no-projects v-if="projectsFound === null && operation === null" />
+      <no-projects v-if="projectsFound === null" />
       <!--  Modals are the windows from create, remove, clone repos and show about this App -->
       <modal-clone v-if="modal.window === 'clone'" />
       <modal-create v-if="modal.window === 'create'" />
