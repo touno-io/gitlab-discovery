@@ -11,6 +11,10 @@ GitLab Discovery is a standalone and continuous development app for GitLab built
 
 <img src="homescreen.png" style="margin:auto; display:block; width:1000px;"/>
 
+# <span style="vertical-align:middle;">⚠</span>Atention
+This app is being rewritten with nw.js, vue, NUIverse and typescript for more information see our proposal.<br>
+<b>This version will no longer be maintained.</b>
+
 # Introduction
 
 <p>
