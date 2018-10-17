@@ -11,7 +11,7 @@ GitLab Discovery is a standalone and continuous development app for GitLab built
 
 <img src="homescreen.png" style="margin:auto; display:block; width:1000px;"/>
 
-# Atention
+# Attention
 <p>This version is a mini version for tests.</p>
 
 # Introduction
@@ -36,6 +36,13 @@ We developed this app initially to make our team work easier, but we thought it 
 
 ``` bash
 Build Setup
+# clone this repo
+git clone git@gitlab.com:nuinalp/gitlab-discovery.git
+
+# checkou for mini-app branch
+
+git checkout mini-app
+
 # install dependencies
 npm install
 
@@ -53,6 +60,6 @@ npm run build
 Copyright (c) 2018 The Nuinalp Authors. All rights reserved.<br>
 Use of this source code is governed by a BSD-style license that can be found in the LICENSE file.
 
-hr
+<hr>
 
 This project was generated with [NW.js with Vue](https://gitlab.com/patrickalima98/nwjs-with-vue/tree/typescript) using vue-cli.
