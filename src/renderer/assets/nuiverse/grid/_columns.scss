@@ -1,0 +1,274 @@
+/**
+* Copyright (c) 2018 The Nuinalp Authors. All rights reserved.
+* Use of this source code is governed by a BSD-style license that can be
+* found in the LICENSE file.
+*/
+
+@mixin make-column($largescreen: true, $fullhd: true) {
+  // Responsive
+
+  @include mobile() {
+    .column {
+      &.full-mobile {
+        flex: none;
+        width: 100%;
+      }
+
+      &.half-mobile {
+        flex: none;
+        width: 50%;
+      }
+
+      &.smart,
+      &.smart-mobile {
+        flex: none;
+      }
+
+      @for $i from 1 through $grid-columns {
+        &.col-#{$i},
+        &.col-#{$i}-mobile {
+          flex: none;
+          width: percentage($i / $grid-columns);
+        }
+        
+        &.col-offset-#{$i},
+        &.col-offset-#{$i}-mobile {
+          margin-left: percentage($i / $grid-columns);
+        }
+      }
+    }
+  }
+
+  @include tablet() {
+    .columns {
+      &:not(.desktop) {
+        display: flex;
+      }
+    }
+    
+    .column {
+      &.full-tablet {
+        flex: none;
+        width: 100%;
+      }
+
+      &.half-tablet {
+        flex: none;
+        width: 50%;
+      }
+
+      &.smart,
+      &.smart-tablet {
+        flex: none;
+      }
+
+      @for $i from 1 through $grid-columns {
+        &.col-#{$i},
+        &.col-#{$i}-tablet {
+          flex: none;
+          width: percentage($i / $grid-columns);
+        }
+        
+        &.col-offset-#{$i},
+        &.col-offset-#{$i}-tablet {
+          margin-left: percentage($i / $grid-columns);
+        }
+      }
+    }
+  }
+
+  @include desktop() {
+    .columns {
+      &.desktop {
+        display: flex;
+      }
+
+      &:not(.desktop) {
+        display: flex;
+      }
+    }
+    
+    .column {
+      &.full-desktop {
+        flex: none;
+        width: 100%;
+      }
+
+      &.half-desktop {
+        flex: none;
+        width: 50%;
+      }
+
+      &.smart,
+      &.smart-desktop {
+        flex: none;
+      }
+
+      @for $i from 1 through $grid-columns {
+        &.col-#{$i},
+        &.col-#{$i}-desktop {
+          flex: none;
+          width: percentage($i / $grid-columns);
+        }
+        
+        &.col-offset-#{$i},
+        &.col-offset-#{$i}-desktop {
+          margin-left: percentage($i / $grid-columns);
+        }
+      }
+    }
+  }
+
+  
+  @if $largescreen == true {
+    @include largescreen() {
+      .column {
+        &.full-largescreen {
+          flex: none;
+          width: 100%;
+        }
+
+        &.half-largescreen {
+          flex: none;
+          width: 50%;
+        }
+
+        &.smart,
+        &.smart-largescreen {
+          flex: none;
+        }
+
+        @for $i from 1 through $grid-columns {
+          &.col-#{$i},
+          &.col-#{$i}-largescreen {
+            flex: none;
+            width: percentage($i / $grid-columns);
+          }
+          
+          &.col-offset-#{$i},
+          &.col-offset-#{$i}-largescreen {
+            margin-left: percentage($i / $grid-columns);
+          }
+        }
+      }
+    }
+  }
+
+  @if $fullhd == true {
+    @include fullhd() {
+      .column {
+        &.full-fullhd {
+          flex: none;
+          width: 100%;
+        }
+
+        &.half-fullhd {
+          flex: none;
+          width: 50%;
+        }
+
+        &.smart,
+        &.smart-fullhd {
+          flex: none;
+        }
+
+        @for $i from 1 through $grid-columns {
+          &.col-#{$i},
+          &.col-#{$i}-fullhd {
+            flex: none;
+            width: percentage($i / $grid-columns);
+          }
+          
+          &.col-offset-#{$i},
+          &.col-offset-#{$i}-fullhd {
+            margin-left: percentage($i / $grid-columns);
+          }
+        }
+      }
+    }
+  }
+  
+  .column {
+    display: block;
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding: $column-margin;
+
+    &.half {
+      flex: none;
+      width: 50%;
+    }
+  }
+}
+
+
+@mixin make-columns() {
+  .columns {
+    margin-left: (-$column-margin);
+    margin-right: (-$column-margin);
+    margin-top: (-$column-margin);
+
+    &.full {
+      flex: none;
+      width: 100%;
+    }
+
+    &:last-child {
+      margin-bottom: (-$column-margin);
+    }
+
+    &:not(:last-child) {
+      margin-bottom: calc(1.5rem - #{$column-margin});
+    }
+
+    // Remove a margin from edges column
+
+    &.no-margin {
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
+
+      > .column {
+        margin: 0;
+        padding: 0 !important;
+      }
+    }
+
+    &.no-edge-margin {
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
+
+      > .column {
+        &:first-child {
+          margin-left: 0;
+          padding-left: 0 !important;
+        }
+
+        &:last-child {
+          margin-right: 0;
+          padding-right: 0 !important;
+        }
+      }
+    }
+
+    // Allow use multiples column
+    &.multiline {
+      flex-wrap: wrap;
+    }
+
+    // Modifiers
+    &.centered {
+      justify-content: center;
+    }
+
+    &.mobile {
+      display: flex;
+    }
+
+    &.vertical-centered {
+      align-items: center;
+    }
+  }
+}

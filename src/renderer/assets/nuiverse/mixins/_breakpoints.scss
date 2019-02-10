@@ -1,0 +1,72 @@
+/**
+* Copyright (c) 2018 The Nuinalp Authors. All rights reserved.
+* Use of this source code is governed by a BSD-style license that can be
+* found in the LICENSE file.
+*/
+
+@mixin smallmobile() {
+  @media (min-width: map-get($global-breakpoints, small) - 1px) {
+    @content;
+  }  
+}
+
+@mixin mobile() {
+  @media (min-width: map-get($global-breakpoints, mobile) - 1px) {
+    @content;
+  }
+}
+
+@mixin tablet() {
+  @media (min-width: map-get($global-breakpoints, tablet)) {
+    @content;
+  }
+}
+
+@mixin desktop() {
+  @media (min-width: map-get($global-breakpoints, desktop)) {
+    @content;
+  }
+}
+
+@mixin largescreen() {
+  @media (min-width: map-get($global-breakpoints, largescreen)) {
+    @content;
+  }
+}
+
+@mixin fullhd() {
+  @media (min-width: map-get($global-breakpoints, fullhd)) {
+    @content;
+  }
+}
+
+@function bp-helper($bpName, $Flag, $Split: '', $breakpoints: $global-breakpoints) {
+  
+  @if $Flag == 'min' { 
+    $min: map-get($breakpoints, $bpName);
+    @return if($min != 0, $min, null);
+  }
+  
+  @if $Flag == 'max' {
+    
+  }
+  
+  @if $Flag == 'multiple' {
+    
+  }
+  
+  @if $Flag == 'check' {
+    @return if(bpHelper($bpName, 'min') == null, '', '#{$Split}#{$bpName}');
+  }
+}
+
+@mixin media-breakpoint-min($bpName) {
+  $min: bp-helper($bpName, 'min');
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}

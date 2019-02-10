@@ -1,0 +1,48 @@
+/**
+* Copyright (c) 2018 The Nuinalp Authors. All rights reserved.
+* Use of this source code is governed by a BSD-style license that can be
+* found in the LICENSE file.
+*/
+
+.sub-header {
+  align-items: center;
+  display: flex;
+
+  a,
+  .text {
+    display: block;
+    font-size: 14px;
+    font-weight: normal;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 14px;
+    position: relative;
+    text-transform: uppercase;
+  }
+
+  a {
+    padding-inline-end: 16px;
+
+    &::before {
+      border-bottom: 8px solid;
+      border-bottom-color: currentColor;
+      border-inline-start: 8px solid transparent;
+      bottom: 5px;
+      content: '';
+      offset-inline-end: 0;
+      position: absolute;
+      right: 6px;
+    }
+  }
+    
+  .line {
+    background-color: #999;
+    display: block;
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    height: 2px;
+    margin-top: -1px;
+    width: 100%;
+  }
+}

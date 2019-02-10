@@ -1,0 +1,119 @@
+/**
+* Copyright (c) 2018 The Nuinalp Authors. All rights reserved.
+* Use of this source code is governed by a BSD-style license that can be
+* found in the LICENSE file.
+*/
+
+.toast-notification {
+  @extend .transtion-moviment;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 5.5rem;
+  height: 80px;
+  max-width: 400px;
+  overflow: hidden;
+  padding-left: 80px;
+  position: fixed;
+  right: 10px;
+  width: 0;
+  
+  h5,
+  span {
+    color: #fff;
+  }
+
+  .notification-icon {
+    height: 80px;
+    left: 0;
+    overflow: hidden;
+    padding: 10px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 80px;
+
+    img {
+      display: inline-block;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  &.closed {
+    bottom: -100%;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &.flying {
+    bottom: 10px;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &.hiding {
+    @extend .transtion-exit;
+    opacity: 0;
+    transition-duration: 3s;
+  }
+
+  .notification-body {
+    display: inline-block;
+    height: 80px;
+    padding-right: 20px;
+    white-space: nowrap;
+  }
+
+  .notification-content {
+    display: inline-block;
+    height: 80px;
+    padding: 10px 0;
+    position: relative;
+    vertical-align: top;
+    white-space: normal;
+    width: 240px;
+  }
+
+  .notification-actions {
+    align-items: center !important;
+    display: inline-block;
+    height: 80px;
+    padding: 8px 0;
+    position: relative;
+    vertical-align: top;
+    white-space: normal;
+    width: 74px;
+
+    ul {
+      align-items: center;
+      display: flex;
+      height: 100%;
+      list-style: none;
+      padding: 0;
+      width: 100%;
+    }
+
+    li {
+      color: #fff;
+    }
+
+    &::before {
+      background-color: rgba(255, 255, 255, 0.5);
+      content: ' ';
+      height: calc(100% - 20px);
+      left: 0;
+      margin: 10px 0;
+      position: absolute;
+      top: 0;
+      width: 1px;
+    }
+
+    .action-items {
+      flex-basis: 0;
+      flex-grow: 1;
+      max-width: 100%;
+      min-height: 1px;
+      padding-left: 10px;
+      position: relative;
+    }
+  }
+}

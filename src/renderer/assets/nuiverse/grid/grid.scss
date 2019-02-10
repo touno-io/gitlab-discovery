@@ -1,0 +1,24 @@
+/**
+* Copyright (c) 2018 The Nuinalp Authors. All rights reserved.
+* Use of this source code is governed by a BSD-style license that can be
+* found in the LICENSE file.
+*/
+
+@import './_columns';
+// @import './_titles'
+
+@include make-column(
+  $largescreen: true,
+  $fullhd: true
+);
+@include make-columns();
+
+.container {
+  padding-left: $column-margin;
+  padding-right: $column-margin;
+}
+
+.container-full {
+  padding-left: 0;
+  padding-right: 0;
+}

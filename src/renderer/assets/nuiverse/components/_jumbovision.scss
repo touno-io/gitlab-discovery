@@ -1,0 +1,22 @@
+/**
+* Copyright (c) 2018 The Nuinalp Authors. All rights reserved.
+* Use of this source code is governed by a BSD-style license that can be
+* found in the LICENSE file.
+*/
+
+.jumbovision {
+  background-color: darken($white, 5%);
+  border-radius: $global-border-radius;
+  padding: $padding-big-y $padding-big-x;
+  
+  hr {
+    background-color: darken($white, 15%);
+  }
+  
+  //Remove paddings
+  &.fluid {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+}

@@ -1,0 +1,87 @@
+/**
+* Copyright (c) 2018 The Nuinalp Authors. All rights reserved.
+* Use of this source code is governed by a BSD-style license that can be
+* found in the LICENSE file.
+*/
+
+@import '../mixins/_buttons';
+
+.button-group {
+  display: inline-flex;
+  
+  .button {
+    margin: 0 -1px 4px 0;
+  }
+
+  .button:not(:first-child):not(:last-child) {
+    border-radius: 0;
+  }
+  
+  .button:first-child:not(:last-child) {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  .button:last-child:not(:first-child) {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+  }
+
+  &.small .button {
+    @include small();
+  }
+
+  &.medium .button {
+    @include medium();
+  }
+
+  &.large .button {
+    @include large();
+  }
+
+  &.big .button {
+    @include big();
+  }
+}
+
+.button-group-vertical {
+  align-items: flex-start;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  .button {
+    display: block;
+    margin: 0 0 -1px 0;
+    width: 100%;
+
+    &.circle {
+      width: 90px;
+    }
+  }
+
+  .button:not(:first-child):not(:last-child) {
+    border-radius: 0;
+  }
+  
+  .button:first-child:not(:last-child) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .button:last-child:not(:first-child) {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+}
+
+.button-group-circle {
+  display: inline-flex;
+}
+
+.button-group-circle-vertical {
+  align-items: flex-start;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+}

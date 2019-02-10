@@ -1,0 +1,53 @@
+.top-bar {
+  align-items: center;
+  background-color: $white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: $padding-sm-y $padding-sm-x;
+  
+  .top-bar-left {
+    flex: 1 1 auto;
+    margin-right: auto;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  .top-bar-rigth {
+    flex: 0 1 auto;
+    margin-left: auto;
+  }
+
+  .menu-text {
+    color: $primary;
+    font-size: round($font-size-base * 1.4);
+    font-weight: bold;
+    line-height: 1;
+    padding: $padding-base-y $padding-lg-y;
+  }
+
+  ul {
+    margin-bottom: 0;
+  }
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: relative;
+
+  li {
+    line-height: 1;
+    margin-bottom: 0;
+    padding: $padding-base-y $padding-base-x;
+    text-decoration: none;
+    
+    a {
+      vertical-align: unset;
+    }
+  }
+}
+

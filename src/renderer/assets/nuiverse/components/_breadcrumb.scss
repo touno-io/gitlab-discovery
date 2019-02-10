@@ -1,0 +1,110 @@
+/**
+* Copyright (c) 2018 The Nuinalp Authors. All rights reserved.
+* Use of this source code is governed by a BSD-style license that can be
+* found in the LICENSE file.
+*/
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin-bottom: 1rem;
+  padding: $padding-base-y $padding-base-x;
+  
+  .breadcrumb-item {
+    display: inline-block;
+
+    + .breadcrumb-item::before {
+      color: #6c757d;
+      content: '/';
+      display: inline-block;
+      padding: 0 8px;
+    }
+    
+    &.active {
+      color: $gray-text;
+      text-decoration: none;
+    }
+    
+    a {
+      color: $primary;
+      text-decoration: none;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  @each $ThemeName, $value in $theme-colors {
+    &.itens-color-#{$ThemeName} {
+      @if $ThemeName == 'white' {
+        color: $white;
+      
+        a {
+          color: $white;  
+        }
+
+        .active {
+          color: darken($white, 15%);
+          text-decoration: none;
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+          color: $white;
+        }
+      } @else {
+        color: $value;
+
+        a {
+          color: $value;
+        }
+
+        .active {
+          color: $gray-text;
+          text-decoration: none;
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+          color: $gray-text;
+        }
+      }
+    }
+    
+    &.itens-color-#{$ThemeName}-white {
+      .breadcrumb-item + .breadcrumb-item::before {
+        color: $white;
+      }
+    
+      .active {
+        color: darken($white, 15%);
+        text-decoration: none;
+      }
+    }
+    
+    &.breadcrumb-bkg-#{$ThemeName} {
+        
+      background-color: $value;
+      @if $ThemeName == 'white'{
+      
+      } @else {
+        a {
+          color: $white;
+        }
+
+        .active {
+          color: darken($white, 10%);
+          text-decoration: none;
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+          color: $white;
+        }
+      }
+    }
+  }
+  
+  &.breadcrumb-bkg-none {
+    background-color: transparent;
+  } 
+}

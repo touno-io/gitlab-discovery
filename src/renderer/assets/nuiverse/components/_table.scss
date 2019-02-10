@@ -1,0 +1,113 @@
+/**
+* Copyright (c) 2018 The Nuinalp Authors. All rights reserved.
+* Use of this source code is governed by a BSD-style license that can be
+* found in the LICENSE file.
+*/
+
+.table {
+  background-color: transparent;
+  border-collapse: collapse;
+  margin-bottom: $margin-base-y;
+  max-width: 100%;
+  width: 100%;
+  
+  thead {
+    text-align: left;
+
+    th {
+      border-bottom: 2px solid darken($white, 10%);
+      vertical-align: bottom;
+    }
+  }
+
+  tbody {
+    tr {
+      background-color: #fff;
+      border-top: 1px solid darken($white, 2%);
+      padding: $padding-base-x;
+      text-align: left;
+      vertical-align: middle;
+    }
+  }
+
+  &.striped tbody tr:nth-of-type(odd) {
+    background-color: rgba($dark, 0.05);
+  }
+  
+  // Border
+  &.bordered td,
+  &.bordered th {
+    border: 1px solid darken($white, 10%);
+  }
+  
+  //Hover
+  &.hover tbody tr:hover {
+    background-color: rgba($dark, 0.05);
+  }
+  
+  //Size
+  &.small td,
+  th {
+    padding: $padding-sm-x;
+  }
+  
+  // Dark theme
+  &.dark {
+    background-color: $dark;
+    color: $white !important;
+    
+    thead th {
+      border-bottom: 2px solid lighten($dark, 10%);
+      color: $white;
+    }
+
+    tr {
+      background-color: $dark;
+    }
+
+    td,
+    th {
+      border-top: 1px solid lighten($dark, 10%);
+      color: $white;
+    }
+    
+    &.striped tbody tr:nth-of-type(odd) {
+      background-color: rgba($white, 0.05);
+    }
+    
+    //Hover
+    &.hover tbody tr:hover {
+      background-color: rgba($white, 0.05);
+    }
+    
+    &.bordered td,
+    &.bordered th {
+      border: 1px solid lighten($dark, 10%); 
+    }
+    
+  }  
+  
+  &.light {
+    background-color: $white; 
+  }
+  
+  .thead-light {
+    background-color: $white;
+  } 
+  
+  .thead-dark {
+    background-color: $dark;
+    
+    th {
+      border-bottom: 2px solid $dark;
+      color: $white;  
+    }  
+  }
+  
+}
+
+.table-responsive {
+  display: block;
+  overflow-x: auto;
+  width: 100%;
+}
