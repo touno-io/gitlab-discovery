@@ -57,6 +57,7 @@
     "dugite": "^1.82.0",
     "gitlab": "^4.3.0",
     "moment": "^2.24.0",
+    "passport-gitlab2": "^5.0.0",
     "vue": "^2.5.16",
     "vue-electron": "^1.0.6",
     "vue-router": "^3.0.1",

@@ -44,6 +44,7 @@ import SystemInformation from "./LandingPage/SystemInformation.vue";
     SystemInformation
   }
 })
+
 export default class LandingPage extends Vue {
   open(link: string) {
     if (this.$electron) {

@@ -2,14 +2,32 @@
   <div id="welcome">
     <div id="form">
       <div class="form_container columns align-items-center">
-        <div class="column full p-4 px-6">
+        
+        <div
+          v-if="currentWindow == 'welcome'"
+          class="column full p-4 px-6">
           <h2>Welcome to GitLab Discovery</h2>
           <span class="py-4 d-block">
             GitLab Discovery is the easiest way for you to contribute projects with GitLab to log in and get started right away.
           </span>
           <div class="divider"></div>
           <span class="py-2 d-block">New to GitLab? <a href="">Create your free account</a>.</span>
-          <a href="" class="d-inline-block py-2">Sign into GitLab.com</a>
+          <a class="d-inline-block py-2" @click="sign()">Sign into GitLab.com</a>
+        </div>
+
+        <div 
+          v-if="currentWindow == 'sign_in'"
+          class="column full p-4 px-6">
+          <h2>Sign in</h2>
+          <span>Please insert your Access Token, Name and email.</span>
+
+          <input class="d-block my-2" type="text" placeholder="Access Token">
+          <input class="d-block my-2" type="text" placeholder="User name">
+          <input class="d-block my-2" type="text" placeholder="Email">
+
+          <button class="button d-inline-block">Sign in</button>
+          <small class="d-block mt-4 text-warning">Note: This is a sign in alternative method used on this beta version for tests</small>
+
         </div>
       </div>
     </div>
@@ -23,11 +41,12 @@ import { Component } from "vue-property-decorator";
 @Component({
   name: "welcome",
 })
+
 export default class Welcome extends Vue {
-  open(link: string) {
-    if (this.$electron) {
-      this.$electron.shell.openExternal(link);
-    }
+  currentWindow: string = 'welcome';
+
+  sign(): void {
+    this.currentWindow = 'sign_in';
   }
 }
 </script>

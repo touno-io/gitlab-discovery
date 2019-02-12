@@ -12,7 +12,7 @@ GitLab Discovery is a standalone and continuous development app for GitLab built
 <img src="homescreen.png" style="margin:auto; display:block; width:1000px;"/>
 
 # <span style="vertical-align:middle;">⚠</span>Atention
-This app is being rewritten with nw.js, vue, NUIverse and typescript for more information see our proposal https://gitlab.com/nuinalp/gitlab-discovery/issues/8.<br>
+This app is being rewritten with TypeScript, Vue, NUIverse and Electron for more information see our proposal https://gitlab.com/nuinalp/gitlab-discovery/issues/8.<br>
 <b>This version will no longer be maintained.</b>
 
 # Introduction
@@ -44,7 +44,7 @@ We developed this app initially to make our team work easier, but we thought it 
 npm install
 
 # serve with hot reload at localhost:9080
-npm run dev
+npm start
 
 # build electron application for production
 npm run build
