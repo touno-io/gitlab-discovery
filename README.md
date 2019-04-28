@@ -37,26 +37,33 @@ We developed this app initially to make our team work easier, but we thought it 
 
 <p>For now GitLab Discovery is not yet ready to be used by other people, however you can download the source code and compile yourself, initially it was project only to work in Windows.</p>
 
-#### Build Setup
-
-``` bash
-# install dependencies
+## Project setup
+```bash
 npm install
-
-# serve with hot reload at localhost:9080
-npm start
-
-# build electron application for production
-npm run build
-
-# run unit & end-to-end tests
-npm test
-
-
-# lint all JS/Vue component files in `src/`
-npm run lint
-
 ```
+
+### Compiles and hot-reloads for development
+```bash
+npm run serve
+```
+
+### Compiles and minifies for production
+```bash
+npm run build
+```
+
+### Run your tests
+```bash
+npm run test
+```
+
+### Lints and fixes files
+```bash
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
 
 # License
 
@@ -64,7 +71,3 @@ npm run lint
 
 Copyright (c) 2018 The Nuinalp Authors. All rights reserved.<br>
 Use of this source code is governed by a BSD-style license that can be found in the LICENSE file.
-
----
-
-This project was generated with [electron-vue](https://github.com/SimulatedGREG/electron-vue)@[142eea4](https://github.com/SimulatedGREG/electron-vue/tree/142eea44aa50fdead91a469daedfcff04308c3fc) using [vue-cli](https://github.com/vuejs/vue-cli). Documentation about the original structure can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/index.html).
