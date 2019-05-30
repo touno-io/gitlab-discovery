@@ -22,13 +22,13 @@
   display: flex;
   flex-wrap: wrap;
   position: relative;
-  width: 100%;   
+  width: 100%;
 }
 
 .input-group-prepend {
   display: flex;
   margin-right: -1;
-  
+
   .input-group-text,
   .button {
     border-bottom-left-radius: $global-border-radius;
@@ -41,14 +41,13 @@
     &:not(:first-child) {
       border-radius: 0;
     }
-  
   }
 }
 
 .input-group-append {
   display: flex;
   margin-left: -1;
-  
+
   .input-group-text,
   .button {
     border-bottom-left-radius: 0;
@@ -57,11 +56,10 @@
     border-top-left-radius: 0;
     border-top-right-radius: $global-border-radius;
     margin: 0;
-    
+
     &:not(:last-child) {
       border-radius: 0;
     }
-
   }
 }
 

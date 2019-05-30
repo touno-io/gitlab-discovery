@@ -7,7 +7,7 @@
 @mixin smallmobile() {
   @media (min-width: map-get($global-breakpoints, small) - 1px) {
     @content;
-  }  
+  }
 }
 
 @mixin mobile() {
@@ -41,20 +41,20 @@
 }
 
 @function bp-helper($bpName, $Flag, $Split: '', $breakpoints: $global-breakpoints) {
-  
-  @if $Flag == 'min' { 
+  @if $Flag == 'min' {
     $min: map-get($breakpoints, $bpName);
+
     @return if($min != 0, $min, null);
   }
-  
+
   @if $Flag == 'max' {
-    
+
   }
-  
+
   @if $Flag == 'multiple' {
-    
+
   }
-  
+
   @if $Flag == 'check' {
     @return if(bpHelper($bpName, 'min') == null, '', '#{$Split}#{$bpName}');
   }
@@ -62,11 +62,14 @@
 
 @mixin media-breakpoint-min($bpName) {
   $min: bp-helper($bpName, 'min');
+
   @if $min {
     @media (min-width: $min) {
       @content;
     }
-  } @else {
+  }
+
+  @else {
     @content;
   }
 }

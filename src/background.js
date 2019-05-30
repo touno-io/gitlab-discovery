@@ -1,6 +1,5 @@
 'use strict'
 
-/* tslint:disable */
 import { app, protocol, BrowserWindow } from 'electron'
 import {
   createProtocol,
@@ -10,11 +9,10 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let win: BrowserWindow | null
+let win
 
 // Scheme must be registered before the app is ready
-// @ts-ignore
-protocol.registerSchemesAsPrivileged([{scheme: 'app', secure: true }])
+protocol.registerSchemesAsPrivileged([{scheme: 'app', privileges: { secure: true, standard: true } }])
 
 function createWindow () {
   // Create the browser window.
@@ -24,7 +22,7 @@ function createWindow () {
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
-    win.loadURL(process.env.WEBPACK_DEV_SERVER_URL as string)
+    win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
     if (!process.env.IS_TEST) win.webContents.openDevTools()
   } else {
     createProtocol('app')

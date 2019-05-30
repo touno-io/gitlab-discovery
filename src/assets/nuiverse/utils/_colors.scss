@@ -24,14 +24,12 @@
 @each $themeName, $value in $theme-colors {
   .text-#{$themeName} {
     color: $value !important;
-    
+
     span,
     p,
     code,
-    pre
-    [h-6] {
+    pre [h-6] {
       color: $value !important;
     }
-
   }
 }

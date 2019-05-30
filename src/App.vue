@@ -1,37 +1,18 @@
 <template>
-  <div id="app">
+  <div class="app">
     <router-view/>
   </div>
 </template>
 
-<script lang="ts">
-  import Vue from 'vue';
-  import { mapGetters, mapActions } from 'vuex';
-
-  export default Vue.extend({
-    name: 'app',
-    computed: {
-      ...mapGetters([
-        'theme',
-        'ftu',
-      ]),
-    },
-    methods: {
-      ...mapActions([
-        'updateTheme',
-      ]),
-    },
-    mounted() {
-     // Set a initial config
-     if (!this.theme) {
-       this.updateTheme('light');
-     }
-   },
- });
-
-</script>
-
 <style lang="scss">
-  @import '@/assets/nuiverse/nuiverse.scss';
-  @import '@/style/global.scss';
+  // Import the NUIverse
+  @import './assets/nuiverse/nuiverse';
+
+  .app {
+    color: #2c3e50;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+  }
 </style>

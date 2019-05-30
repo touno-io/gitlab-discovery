@@ -175,9 +175,8 @@ $full-animation-duration: 1.5s;
       &.orange {
         background-color: $orange-loader;
       }
-
     }
-    
+
     &.firefox-fix {
       .yellow {
         box-shadow: 0 0 1px rgba($yellow-loader, 0.7);
@@ -251,7 +250,7 @@ $full-animation-duration: 1.5s;
   .face.piece.front.row-bottom.col-left {
     animation-name: step-3-front-to-down;
   }
-  
+
   .face.piece.right.row-center.col-left {
     animation-name: step-2-3-right-to-front-to-down;
   }
@@ -259,7 +258,7 @@ $full-animation-duration: 1.5s;
   .face.up.piece.col-left {
     animation-name: step-3-up-to-front;
   }
-  
+
   .face.piece.front.row-bottom.col-right {
     animation-name: step-4-front-to-right;
   }
@@ -275,7 +274,6 @@ $full-animation-duration: 1.5s;
   .face.left.piece.row-bottom {
     animation-name: step-4-left-to-front;
   }
-
 }
 
 @keyframes step-1-front-to-up {

@@ -4,7 +4,7 @@
 * found in the LICENSE file.
 */
 
-// Credits: 
+// Credits:
 // Nicolas Gallagher: https://github.com/necolas
 // SUIT CSS: https://github.com/suitcss/suit
 
@@ -39,19 +39,19 @@
       padding-top: percentage(9 / 21);
     }
   }
-  
+
   &.16by9 {
     &::before {
       padding-top: percentage(9 / 16);
     }
   }
-  
+
   &.4by3 {
     &::before {
       padding-top: percentage(3 / 4);
     }
   }
-  
+
   &.1by1 {
     &::before {
       padding-top: percentage(1 / 1);

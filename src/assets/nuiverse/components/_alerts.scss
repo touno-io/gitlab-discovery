@@ -11,7 +11,7 @@
   margin-bottom: $margin-base-x;
   padding: $padding-base-y $padding-base-y;
   position: relative;
-  
+
   span,
   .alert-title {
     color: $dark;
@@ -24,24 +24,27 @@
     margin-right: 0;
     margin-top: 0;
   }
-  
+
   @each $themeName, $value in $theme-colors {
     &.#{$themeName} {
       @if ($themeName == 'dark') {
         color: $white;
-  
+
         span,
         .alert-title {
           color: $white;
         }
-      } @else if ($themeName != 'white') {
+      }
+
+      @else if ($themeName != 'white') {
         color: darken($value, 25%);
-  
+
         span,
         .alert-title {
           color: darken($value, 25%);
         }
       }
+
       background-color: lighten($value, 40%);
       border: 1px solid darken($value, 10%);
     }
@@ -52,7 +55,7 @@
   color: unset;
   font-weight: 700;
   vertical-align: initial;
-  
+
   &:hover {
     color: unset;
   }

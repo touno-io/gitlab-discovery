@@ -35,14 +35,14 @@
 
 // Progressbars
 @keyframes progressbarAnim {
-  0% {background-position: 0 0;}
-  100% {background-position: -15rem 0;}
+  0% { background-position: 0 0; }
+  100% { background-position: -15rem 0; }
 }
 
 @keyframes loadingProgressbar {
-  0% {transform: translateX(-89%);}
-  50% {transform: translateX(189%);}
-  100% {transform: translateX(-89%);}
+  0% { transform: translateX(-89%); }
+  50% { transform: translateX(189%); }
+  100% { transform: translateX(-89%); }
 }
 
 @keyframes fadeOut {

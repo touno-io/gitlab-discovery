@@ -57,7 +57,6 @@
     .avatar {
       float: right;
     }
-
   }
 }
 
@@ -66,7 +65,7 @@
   flex-direction: column;
   margin-bottom: 0;
   padding-left: 0;
-  
+
   .list-group-item {
     background-color: #fff;
     border: 1px solid lighten($dark, 75%);
@@ -78,50 +77,50 @@
     padding: $padding-base-y $padding-lg-y;
     position: relative;
     text-decoration: inherit;
-    
+
     &.active {
       background-color: $primary !important;
       border-color: $primary !important;
       color: $white;
-      
+
       * {
         color: unset;
       }
     }
   }
-  
+
   .list-group-item:first-child {
     border-top-left-radius: $global-border-radius;
     border-top-right-radius: $global-border-radius;
-  }  
-  
+  }
+
   .list-group-item:last-child {
     border-bottom-left-radius: $global-border-radius;
     border-bottom-right-radius: $global-border-radius;
   }
-  
+
   &.list-group-bd-n .list-group-item {
     border-left: 0;
     border-radius: 0;
     border-right: 0;
   }
-  
+
   .list-group-item-action {
     color: #495057;
     font-size: inherit;
     text-align: inherit;
     width: 100%;
-    
+
     &:hover {
       background-color: darken($white, 2%);
       text-decoration: none;
     }
-    
+
     &:disabled {
       color: darken($white, 20%);
     }
   }
-  
+
 
   &.list-group-line {
     .list-group-item {

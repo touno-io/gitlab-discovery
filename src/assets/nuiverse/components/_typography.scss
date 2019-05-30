@@ -28,7 +28,7 @@ body {
   font-size: $base-px * $ms0;
   font-weight: 400;
   line-height: ($base-px * $ms0) * $ratio;
-  
+
   @include smallmobile() {
     font-size: $base-px * $ms1;
     line-height: ($base-px * $ms1) * $ratio;
@@ -196,11 +196,10 @@ mark,
       padding-left: 30px;
     }
   }
-  
+
   li {
-    margin-bottom: $margin-sm-y; 
+    margin-bottom: $margin-sm-y;
   }
-  
 }
 
 kbd,

@@ -13,7 +13,7 @@
     display: flex;
     list-style: none;
     position: relative;
-    
+
     li {
       position: relative;
 
@@ -41,17 +41,18 @@
     overflow: hidden;
     width: 100%;
   }
-  
+
   /* Create an active/current tablink class */
   .active {
     .button {
       color: $dark;
     }
 
-    span {color: $dark;}
-    
+    span { color: $dark; }
+
     &::before {
       @extend .transtion-input;
+
       width: 100%;
     }
   }
@@ -70,13 +71,12 @@
     padding: 14px 16px;
     transition: 0.3s;
 
-    span {color: rgba($dark, 0.8);}
-    
+    span { color: rgba($dark, 0.8); }
+
     /* Change background color of buttons on hover */
     &:hover {
       // background-color: #ddd;
     }
-
   }
 
   .tabs-content {
@@ -87,6 +87,7 @@
   /* Style tab content */
   .tabcontent {
     @extend .transtion-exit;
+
     opacity: 0;
     visibility: hidden;
 
@@ -106,13 +107,15 @@
     // Hidden content tab
     &.hiding-tabcontent {
       @include anim-helper(hiddenContTab, 'exit');
+
       display: block;
     }
-    
+
     // Show content tab
     // We adding 100ms because wait finish exit animation
     &.displaying-tabcontent {
       @include anim-helper(showContTab, 'input', 100ms);
+
       display: block;
       opacity: 0;
       visibility: hidden;
@@ -123,7 +126,7 @@
   //
   // Global style with theme colors
   //
-  
+
   @each $themeName, $value in $theme-colors {
     &.#{$themeName} {
       ul li::before {

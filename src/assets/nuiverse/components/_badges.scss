@@ -17,7 +17,7 @@
   vertical-align: baseline;
   white-space: nowrap;
   z-index: 1;
-  
+
   &.pill {
     border-radius: $badge-pill-border-radius;
     padding: $badge-pill-padding;
@@ -54,11 +54,14 @@
     &.#{$themeName} {
       @if ($themeName == 'white') {
         color: $dark;
-      } @else if ($themeName != 'white') {
+      }
+
+      @else if ($themeName != 'white') {
         color: $white;
       }
+
       background-color: $color;
-      
+
       &::before {
         background-color: $color;
       }

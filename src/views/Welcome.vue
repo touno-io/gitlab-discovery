@@ -1,7 +1,13 @@
+<!--
+ Copyright (c) 2019 The Nuinalp Authors. All rights reserved.
+ Use of this source code is governed by a BSD-style license that can be
+ found in the LICENSE file.
+-->
+
 <template>
-  <div id="welcome">
-    <div id="form">
-      <div class="form_container columns align-items-center">
+  <div class="welcome">
+    <div class="form">
+      <div class="form-container columns align-items-center text-left">
 
         <div v-if="step == 0">
           <div
@@ -60,163 +66,169 @@
   </div>
 </template>
 
-<script lang="ts">
-  import Vue                        from 'vue';
-  import { mapGetters, mapActions } from 'vuex';
-  import { shell }                  from 'electron';
-  import * as fs                    from 'fs';
-  import * as path                  from 'path';
-  // tslint:disable-next-line
-  const Gitlab = require('gitlab').default;
+<script>
+// import Vue                        from 'vue';
+import { mapGetters, mapActions } from 'vuex';
+// import { shell }                  from 'electron';
+const shell = require('electron').shell;
+// import * as fs                    from 'fs';
+// import * as path                  from 'path';
+// tslint:disable-next-line
+// const Gitlab = require('gitlab').default;
+import { Gitlab } from 'gitlab';
 
-  export default Vue.extend({
-    name: 'welcome',
-    data() {
-      return {
-        token: '',
-        email: '',
-        nameUser: '',
-        errorEmail: false,
-        errorNameUser: false,
-        errorToken: false,
-        step: 0,
-        gitlabUserName: '',
-        gitlabUserEmail: '',
-        currentWindow: 'welcome',
-      };
+export default {
+  name: 'welcome',
+  data() {
+    return {
+      token: 'FhTnCHskarNKMgHgxFRd',
+      email: 'patrickalima@nuinalp.com',
+      nameUser: 'patrickalima98',
+      errorEmail: false,
+      errorNameUser: false,
+      errorToken: false,
+      step: 0,
+      gitlabUserName: '',
+      gitlabUserEmail: '',
+      currentWindow: 'welcome',
+    };
+  },
+  methods: {
+    ...mapActions({
+     ADD_USER: 'users/ADD_USER',
+    }),
+    sign() {
+      this.currentWindow = 'sign_in_win';
     },
-    methods: {
-      sign() {
-        this.currentWindow = 'sign_in_win';
-      },
-      openLink(url: string): void  {
-        shell.openExternal(url);
-      },
-      addUser(): void {
-        // tslint:disable-next-line
-        const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    openLink(url) {
+      shell.openExternal(url);
+    },
+    addUser() {
+      // eslint-disable-next-line
+      const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-        this.errorToken = false;
-        this.errorNameUser = false;
-        this.errorEmail = false;
+      this.errorToken = false;
+      this.errorNameUser = false;
+      this.errorEmail = false;
 
-        if (this.token === '') {
-          this.errorToken = true;
-          return;
-        }
+      if (this.token === '') {
+        this.errorToken = true;
+        return;
+      }
 
-        if (this.nameUser === '') {
-          this.errorNameUser = true;
-          return;
-        }
+      if (this.nameUser === '') {
+        this.errorNameUser = true;
+        return;
+      }
 
-        if (!emailRegex.test(this.email)) {
-          this.errorEmail = true;
-          return;
-        }
+      if (!emailRegex.test(this.email)) {
+        this.errorEmail = true;
+        return;
+      }
 
-        this.getGitlabConn();
-        // this.step = 1;
-      },
-      getGitlabConn() {
-        const gitlab: any = new Gitlab({
-          url: 'https://gitlab.com',
-          token: this.token, // Can be created in your profile.
-          useXMLHttpRequest: true,
-        });
-
-        gitlab.Users.current()
-          .then((data: any) => {
-            console.log(data);
-            // this.updateCurrentUser({
-            //   avatar: data.avatar_url,
-            //   id: data.id,
-            //   username: data.username,
-            // });
+      this.getGitlabConn();
+      // this.step = 1;
+    },
+    getGitlabConn() {
+      const gitlab = new Gitlab({
+        token: this.token, // Can be created in your profile.
+      });
+      
+      gitlab.Users.current()
+        .then((data) => {
+          console.log(data);
+          this.ADD_USER({
+            login: data.username,
+            name: data.name,
+            avatar_url: data.avatar_url,
+            email: data.email,
+            id: data.id,
           });
-      },
-      backStep(step: number) {
-        this.step = step;
-        this.gitlabUserName = '';
-        this.gitlabUserEmail = '';
-      },
+        });
     },
-  });
+    backStep(step) {
+      this.step = step;
+      this.gitlabUserName = '';
+      this.gitlabUserEmail = '';
+    },
+  },
+};
 </script>
 
 <style lang="scss">
- #welcome {
+.welcome {
   &::before {
     background-image: url('../assets/gitlab-icon-pattern-header.svg');
     background-size: cover;
-    position: absolute;
-    content: "";
-    width: 100%;
-    height: 100%;
-    top: 0;
-    right: 0;
     bottom: 0;
-    z-index: 1;
+    content: '';
+    height: 100%;
     left: 0;
-    opacity: .1;
+    opacity: 0.1;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1;
   }
 
   &::after {
-    position: absolute;
-    content: "";
-    width: 50%;
-    height: 100%;
-    top: 0;
-    right: 0;
+    background-color: #548;
     bottom: 0;
+    content: '';
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50%;
     z-index: 0;
-    background-color: #554488;
   }
 
-  #form {
-    position: absolute;
-    width: 50%;
+  .form {
+    background-color: rgba(255, 255, 255, 0.75);
     height: 100%;
     left: 0;
+    position: absolute;
     top: 0;
-    background-color: rgba(255, 255, 255, 0.75);
+    width: 50%;
     z-index: 2;
   }
 
-  .form_container {
+  .form-container {
     height: 100%;
     padding: 0 10%;
   }
 
   .divider {
-    width: 20%;
-    height: 4px;
+    background-color: #e6e6e6;
     border-radius: 20px;
-    background-color: #E6E6E6;
     display: block;
+    height: 4px;
     margin: 10px 0;
+    width: 20%;
   }
 
   .example-commit {
-    border-radius: 4px;
-    border: 1px solid rgb(235, 235, 235);
     background-color: #fff;
-    overflow: hidden;
+    border: 1px solid rgb(235, 235, 235);
+    border-radius: 4px;
     margin-top: 30px;
+    overflow: hidden;
 
-    .example-commit-header{
-      padding: 6px 10px;
+    .example-commit-header {
       background-color: #efefef;
       color: rgb(32, 32, 32);
       display: block;
-    }
-
-    .example-commit-container{
       padding: 6px 10px;
     }
+
+    .example-commit-container {
+      padding: 6px 10px;
+    }
+
     .example-commit-title {
-      font-weight: bold;
       display: block;
+      font-weight: bold;
     }
 
     .example-commit-username,
@@ -225,5 +237,5 @@
       font-family: 'FiraGO Light';
     }
   }
- }
+}
 </style>

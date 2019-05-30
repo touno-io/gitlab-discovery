@@ -5,17 +5,16 @@
 */
 
 form {
- 
   border-radius: $global-border-radius;
   padding: ($padding-base-y * 4) ($padding-base-x * 2);
-  
+
   .copyright {
     display: block;
     margin-bottom: -20px;
     margin-top: 20px;
   }
 }
-  
+
 .form-group {
   margin-bottom: $margin-base-y;
 }
@@ -65,7 +64,7 @@ form {
   background: transparent !important;
   border-color: transparent !important;
   box-shadow: none !important;
-  
+
   &:focus {
     border-color: transparent;
     box-shadow: none !important;
@@ -81,11 +80,10 @@ form {
 }
 
 .form-inline {
-  
   align-items: center;
   display: flex;
   flex-flow: row wrap;
-  
+
   .form-group {
     align-items: center;
     display: flex;

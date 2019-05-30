@@ -27,7 +27,7 @@
     top: 0;
     width: 28px;
   }
-  
+
   input {
     cursor: pointer;
     opacity: 0;
@@ -110,14 +110,14 @@
   //
   // Global style with theme colors
   //
-  
+
   @each $themeName, $value in $theme-colors {
     &.#{$themeName} {
       /* stylelint-disable-next-line */
       input:checked ~ .checkmark-container .checkmark {
         background-color: $value;
       }
-      
+
       /* stylelint-disable-next-line */
       input:checked ~ .checkmark-container .checkmark::before {
         background-color: $value;

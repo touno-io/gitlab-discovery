@@ -8,7 +8,7 @@
 
 .button-group {
   display: inline-flex;
-  
+
   .button {
     margin: 0 -1px 4px 0;
   }
@@ -16,7 +16,7 @@
   .button:not(:first-child):not(:last-child) {
     border-radius: 0;
   }
-  
+
   .button:first-child:not(:last-child) {
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
@@ -49,7 +49,7 @@
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
-  
+
   .button {
     display: block;
     margin: 0 0 -1px 0;
@@ -63,7 +63,7 @@
   .button:not(:first-child):not(:last-child) {
     border-radius: 0;
   }
-  
+
   .button:first-child:not(:last-child) {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;

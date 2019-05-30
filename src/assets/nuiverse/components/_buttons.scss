@@ -5,11 +5,12 @@
 */
 
 .button {
-  
+
   //
   // Base Style
   //
   @extend .transtion-input;
+
   background-color: $primary;
   border: 1px solid $primary;
   border-radius: $button-border-radius;
@@ -22,24 +23,25 @@
 
   &:hover {
     background-color: lighten($primary, 20%);
-    
+
     .fx-hover {
       opacity: 1;
       transform: unset;
       visibility: visible;
       will-change: transform, opacity, visibility;
     }
-    
+
     .fx-click {
       transform: scale(0);
       will-change: transform, opacity, visibility;
     }
   }
-  
+
   // Style for click effect
-  
+
   .fx-click {
     @extend .transtion-input;
+
     background-color: lighten($primary, 15%);
     border-radius: 100%;
     filter: blur(10px);
@@ -62,6 +64,7 @@
 
   .fx-hover {
     @extend .transtion-moviment;
+
     background-color: $primary;
     border-radius: 50%;
     display: block;
@@ -97,13 +100,13 @@
   }
 
   @each $themeName, $value in $theme-colors {
-    
+
     //
     // Global style with theme colors
     //
-    
+
     // Default
-    
+
     &.#{$themeName} {
       background-color: $value;
       border: 1px solid $value;
@@ -135,7 +138,7 @@
         background-color: lighten($value, 45%);
         border: 1px solid lighten($value, 45%);
       }
-    } 
+    }
 
     // Outline style
 
@@ -149,11 +152,11 @@
         border-color: lighten($value, 10%);
         color: lighten($value, 10%);
       }
-      
+
       span {
         color: $white;
       }
-      
+
       // Disabled style      
       &.disabled,
       &:disabled {
@@ -180,13 +183,13 @@
     font-size: $font-size-sm;
     padding: $padding-sm-y $padding-sm-x;
   }
-  
+
   // Medium style
   &.medium {
     font-size: $font-size-md;
     padding: $padding-md-y $padding-md-x;
   }
-  
+
   // Large style
   &.large {
     font-size: $font-size-lg;
@@ -198,7 +201,7 @@
     font-size: $font-size-big;
     padding: $padding-big-y $padding-big-x;
   }
-  
+
   //
   // Global depth for Buttons follow Nuinalp Language Design
   //
@@ -247,7 +250,7 @@
     }
 
     @each $themeName, $value in $theme-colors {
-      &.#{$themeName} {    
+      &.#{$themeName} {
         color: $value;
 
         &:hover,
@@ -255,11 +258,11 @@
           background-color: transparent;
           color: lighten($value, 10%);
         }
-        
+
         span {
           color: $white;
         }
-        
+
         // Disabled style      
         &.disabled,
         &:disabled {

@@ -13,9 +13,10 @@
   text-align: center;
   top: 0;
   width: 100%;
-  
+
   .dialog-container {
     @extend .depth-26;
+
     background-color: $white;
     border-radius: $global-border-radius;
     height: auto;
@@ -46,12 +47,12 @@
       padding: 30px 20px 20px;
     }
   }
-  
+
   .dialog-footer {
     border-top: 1px solid rgba($dark, 0.1);
     display: flex;
     flex-wrap: wrap;
-    
+
     .button,
     button {
       background: transparent;

@@ -30,7 +30,7 @@
           flex: none;
           width: percentage($i / $grid-columns);
         }
-        
+
         &.col-offset-#{$i},
         &.col-offset-#{$i}-mobile {
           margin-left: percentage($i / $grid-columns);
@@ -45,7 +45,7 @@
         display: flex;
       }
     }
-    
+
     .column {
       &.full-tablet {
         flex: none;
@@ -68,7 +68,7 @@
           flex: none;
           width: percentage($i / $grid-columns);
         }
-        
+
         &.col-offset-#{$i},
         &.col-offset-#{$i}-tablet {
           margin-left: percentage($i / $grid-columns);
@@ -87,7 +87,7 @@
         display: flex;
       }
     }
-    
+
     .column {
       &.full-desktop {
         flex: none;
@@ -110,7 +110,7 @@
           flex: none;
           width: percentage($i / $grid-columns);
         }
-        
+
         &.col-offset-#{$i},
         &.col-offset-#{$i}-desktop {
           margin-left: percentage($i / $grid-columns);
@@ -119,7 +119,7 @@
     }
   }
 
-  
+
   @if $largescreen == true {
     @include largescreen() {
       .column {
@@ -144,7 +144,7 @@
             flex: none;
             width: percentage($i / $grid-columns);
           }
-          
+
           &.col-offset-#{$i},
           &.col-offset-#{$i}-largescreen {
             margin-left: percentage($i / $grid-columns);
@@ -178,7 +178,7 @@
             flex: none;
             width: percentage($i / $grid-columns);
           }
-          
+
           &.col-offset-#{$i},
           &.col-offset-#{$i}-fullhd {
             margin-left: percentage($i / $grid-columns);
@@ -187,7 +187,7 @@
       }
     }
   }
-  
+
   .column {
     display: block;
     flex-basis: 0;

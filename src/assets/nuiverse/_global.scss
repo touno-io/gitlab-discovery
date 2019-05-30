@@ -19,31 +19,37 @@
     font-weight: 400;
     src: url('~@/assets//fonts/FiraGO-Regular.woff') format('woff');
   }
+
   @font-face {
     font-family: 'FiraGO Bold';
     font-weight: 400;
     src: url('~@/assets//fonts/FiraGO-Bold.woff') format('woff');
   }
+
   @font-face {
     font-family: 'FiraGO Bold Italic';
     font-weight: 400;
     src: url('~@/assets//fonts/FiraGO-BoldItalic.woff') format('woff');
   }
+
   @font-face {
     font-family: 'FiraGO Italic';
     font-weight: 400;
     src: url('~@/assets//fonts/FiraGO-Italic.woff') format('woff');
   }
+
   @font-face {
     font-family: 'FiraGO Medium Italic';
     font-weight: 400;
     src: url('~@/assets//fonts/FiraGO-MediumItalic.woff') format('woff');
   }
+
   @font-face {
     font-family: 'FiraGO Light';
     font-weight: 400;
     src: url('~@/assets//fonts/FiraGO-Light.woff') format('woff');
   }
+
   @font-face {
     font-family: 'FiraGO Light Italic';
     font-weight: 400;
@@ -194,25 +200,29 @@ textarea {
   border-style: solid;
   border-width: 1px;
   padding: $padding-base-y $padding-base-x;
-  
+
   @if ($fira-go == 'true') {
     font-family: 'FiraGo Regular';
   }
 
   &::placeholder {
     color: #aab2ba;
+
     @if ($fira-go == 'true') {
       font-family: 'FiraGo Italic';
-    } @else {
+    }
+
+    @else {
       font-style: italic;
     }
+
     opacity: 1;
   }
 
   &:focus,
   &:active {
     background-color: $white;
-    color: #5F5F5F;
+    color: #5f5f5f;
     border-color: $primary;
   }
 }
@@ -224,7 +234,7 @@ select,
   border-radius: $global-border-radius;
   border-style: solid;
   border-width: 1px;
-  color: #5F5F5F;
+  color: #5f5f5f;
   font-style: italic;
   opacity: 1;
   padding: $padding-base-y $padding-base-x;
@@ -267,7 +277,7 @@ label {
 a {
   color: $primary;
   text-decoration: none;
-  
+
   &:hover {
     color: darken($primary, 10%);
   }
