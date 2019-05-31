@@ -1,0 +1,121 @@
+/**
+* Copyright (c) 2018 The Nuinalp Authors. All rights reserved.
+* Use of this source code is governed by a BSD-style license that can be
+* found in the LICENSE file.
+*/
+
+.input-group-text {
+  align-items: center;
+  background-color: darken($white, 10%);
+  border: 1px solid $default-border-color;
+  color: $default-color;
+  display: flex;
+  font-weight: 400;
+  margin-bottom: 0;
+  padding: $padding-base-y $padding-base-x;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.input-group {
+  align-items: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  width: 100%;
+}
+
+.input-group-prepend {
+  display: flex;
+  margin-right: -1;
+
+  .input-group-text,
+  .button {
+    border-bottom-left-radius: $global-border-radius;
+    border-bottom-right-radius: 0;
+    border-right: 0;
+    border-top-left-radius: $global-border-radius;
+    border-top-right-radius: 0;
+    margin: 0;
+
+    &:not(:first-child) {
+      border-radius: 0;
+    }
+  }
+}
+
+.input-group-append {
+  display: flex;
+  margin-left: -1;
+
+  .input-group-text,
+  .button {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: $global-border-radius;
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: $global-border-radius;
+    margin: 0;
+
+    &:not(:last-child) {
+      border-radius: 0;
+    }
+  }
+}
+
+.input-group > .custom-select:not(:first-child),
+.input-group > .form-control:not(:first-child),
+.input-group > .custom-file:not(:first-child) .custom-file-label {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.input-group > .custom-select:not(:last-child),
+.input-group > .form-control:not(:last-child),
+.input-group > .custom-file:not(:last-child) .custom-file-label {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.input-group > .custom-file,
+.input-group > .custom-select,
+.input-group > .form-control {
+  flex: 1 1 auto;
+  margin-bottom: 0;
+  position: relative;
+  width: 1%;
+}
+
+//.input-group-sm > .input-group-prepend > .input-group-text, .input-group-sm > .form-control{
+//  @extend %size-sm;
+//}
+//
+//.input-group-lg > .input-group-prepend > .input-group-text, .input-group-lg > .form-control{
+//  @extend %size-lg;
+//}
+
+.input-group > .custom-file + .custom-file,
+.input-group > .custom-file + .custom-select,
+.input-group > .custom-file + .form-control,
+.input-group > .custom-select + .custom-file,
+.input-group > .custom-select + .custom-select,
+.input-group > .custom-select + .form-control,
+.input-group > .form-control + .custom-file,
+.input-group > .form-control + .custom-select,
+.input-group > .form-control + .form-control {
+  margin-left: -1px;
+}
+
+
+.custom-file-input {
+  opacity: 0;
+}
+
+.custom-file-label {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}

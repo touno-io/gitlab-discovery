@@ -1,12 +1,16 @@
-import Vue from 'vue'
-import App from './App.vue'
-import store from './store'
-import VueVirtualScroller from 'vue-virtual-scroller'
+import Vue      from 'vue';
+import App      from './App.vue';
+import router   from './router';
+import store    from './store';
+import i18n     from './locales';
+import dbPlugin from './dbPlugin';
 
-Vue.use(VueVirtualScroller)
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+Vue.use(dbPlugin);
 
 new Vue({
+  router,
+  store,
+  i18n,
   render: h => h(App),
-  store
-}).$mount('#app')
+}).$mount('#app');

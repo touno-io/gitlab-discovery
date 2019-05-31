@@ -1,0 +1,22 @@
+{
+  "app_name" : "GitLab Discovery",
+  "welcome_title": "Bem-vindo ao GitLab Discovery",
+  "welcome_about": "O GitLab Discovery é a maneira mais fácil de você contribuir com projetos na GitLab, faça login e começe agora :)",
+  "new_question": "Novo na GitLab?",
+  "create_account": "Crie sua conta gratuita",
+  "sign_in_gitlab": "Entrar na GitLab.com",
+  "sign_in_title": "Entrar",
+  "welcome_insert_infos": "Por favor insira seu Token de acesso, nome and e-mail",
+  "welcome_beta_warning": "Nota: Esta maneira de entrar é um método alternativo usado somente nesta versão beta para testes.",
+  "access_token": "token de acesso",
+  "email": "e-mail",
+  "name": "usernome",
+  "invalid_token_message": "Este campo é necessário",
+  "invalid_nameuser_message": "Este campo é necessário",
+  "invalid_email_message": "You need insert a valid email",
+  "configure_git_title": "Configurar Git",
+  "configure_git_desc": "Isso é usado para identificar os commits que você cria. Qualquer um poderá ver essa informação se você publicar commits.",
+  "example_commit": "Exemplo de commit",
+  "example_commit_title": "Meu encrível commit",
+  "example_commit_time": "committ feito 10 minutos atrás"
+}

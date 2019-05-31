@@ -1,0 +1,180 @@
+/**
+* Copyright (c) 2018 The Nuinalp Authors. All rights reserved.
+* Use of this source code is governed by a BSD-style license that can be
+* found in the LICENSE file.
+*/
+
+/* Style the tab */
+.tabs {
+  background-color: $white;
+  overflow: hidden;
+
+  ul {
+    display: flex;
+    list-style: none;
+    position: relative;
+
+    li {
+      position: relative;
+
+      &::before {
+        @extend .transtion-exit;
+
+        background-color: $primary;
+        bottom: 0;
+        content: '';
+        height: 2px;
+        left: 50%;
+        position: absolute;
+        transform: translateX(-50%);
+        transform-origin: center;
+        transition-property: width;
+        width: 0%;
+        z-index: 2;
+      }
+    }
+  }
+
+  .tabs-header {
+    display: block;
+    height: auto;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  /* Create an active/current tablink class */
+  .active {
+    .button {
+      color: $dark;
+    }
+
+    span { color: $dark; }
+
+    &::before {
+      @extend .transtion-input;
+
+      width: 100%;
+    }
+  }
+
+  /* Style the buttons inside the tab */
+  .button {
+    background-color: $white;
+    border: 0;
+    border-radius: 0;
+    color: rgba($dark, 0.8);
+    cursor: pointer;
+    float: left;
+    font-family: 'FiraGO Italic';
+    font-size: 17px;
+    outline: none;
+    padding: 14px 16px;
+    transition: 0.3s;
+
+    span { color: rgba($dark, 0.8); }
+
+    /* Change background color of buttons on hover */
+    &:hover {
+      // background-color: #ddd;
+    }
+  }
+
+  .tabs-content {
+    display: block;
+    margin-top: 14px;
+  }
+
+  /* Style tab content */
+  .tabcontent {
+    @extend .transtion-exit;
+
+    opacity: 0;
+    visibility: hidden;
+
+    &.hidden-tabcontent {
+      display: none;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    // Show content tab
+    &.displayed {
+      display: block;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    // Hidden content tab
+    &.hiding-tabcontent {
+      @include anim-helper(hiddenContTab, 'exit');
+
+      display: block;
+    }
+
+    // Show content tab
+    // We adding 100ms because wait finish exit animation
+    &.displaying-tabcontent {
+      @include anim-helper(showContTab, 'input', 100ms);
+
+      display: block;
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+
+  //
+  // Global style with theme colors
+  //
+
+  @each $themeName, $value in $theme-colors {
+    &.#{$themeName} {
+      ul li::before {
+        background-color: $value;
+      }
+    }
+  }
+}
+
+@keyframes hiddenContTab {
+  0% {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  99% {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  100% {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes showContTab {
+  0% {
+    display: block;
+    opacity: 0;
+    transform: translateX(4%);
+    visibility: hidden;
+  }
+
+  99% {
+    display: block;
+    opacity: 1;
+    transform: translateX(0%);
+    visibility: visible;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+    transform: translateX(0%);
+    visibility: visible;
+  }
+}

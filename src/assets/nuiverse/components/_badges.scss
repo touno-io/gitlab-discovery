@@ -1,0 +1,70 @@
+/**
+* Copyright (c) 2018 The Nuinalp Authors. All rights reserved.
+* Use of this source code is governed by a BSD-style license that can be
+* found in the LICENSE file.
+*/
+
+.badge {
+  background-color: $primary;
+  border-radius: $global-border-radius;
+  color: $white;
+  display: inline-block;
+  font-size: $badge-font-size;
+  font-weight: $badge-font-weight;
+  margin: 0 0 0 4px;
+  padding: $badge-padding-x $badge-padding-y;
+  text-align: center;
+  vertical-align: baseline;
+  white-space: nowrap;
+  z-index: 1;
+
+  &.pill {
+    border-radius: $badge-pill-border-radius;
+    padding: $badge-pill-padding;
+  }
+
+  &.circle {
+    background-color: transparent !important;
+    line-height: 24px;
+    min-width: 25px;
+    padding: 0 0.2rem;
+    position: relative;
+
+    &::before {
+      background-color: $primary;
+      border-radius: 50%;
+      content: ' ';
+      display: block;
+      height: 0;
+      left: 50%;
+      padding-bottom: 90%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      z-index: -1;
+    }
+  }
+
+  //
+  //Theme badges
+  //
+
+  @each $themeName, $color in $theme-colors {
+    &.#{$themeName} {
+      @if ($themeName == 'white') {
+        color: $dark;
+      }
+
+      @else if ($themeName != 'white') {
+        color: $white;
+      }
+
+      background-color: $color;
+
+      &::before {
+        background-color: $color;
+      }
+    }
+  }
+}

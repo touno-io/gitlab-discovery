@@ -1,0 +1,63 @@
+/**
+* Copyright (c) 2018 The Nuinalp Authors. All rights reserved.
+* Use of this source code is governed by a BSD-style license that can be
+* found in the LICENSE file.
+*/
+
+.alert {
+  border: 1px solid transparent;
+  border-radius: $global-border-radius;
+  color: $dark;
+  margin-bottom: $margin-base-x;
+  padding: $padding-base-y $padding-base-y;
+  position: relative;
+
+  span,
+  .alert-title {
+    color: $dark;
+  }
+
+  .alert-title {
+    font-size: 18px;
+    margin-bottom: 0.5rem;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+  }
+
+  @each $themeName, $value in $theme-colors {
+    &.#{$themeName} {
+      @if ($themeName == 'dark') {
+        color: $white;
+
+        span,
+        .alert-title {
+          color: $white;
+        }
+      }
+
+      @else if ($themeName != 'white') {
+        color: darken($value, 25%);
+
+        span,
+        .alert-title {
+          color: darken($value, 25%);
+        }
+      }
+
+      background-color: lighten($value, 40%);
+      border: 1px solid darken($value, 10%);
+    }
+  }
+}
+
+.alert-link {
+  color: unset;
+  font-weight: 700;
+  vertical-align: initial;
+
+  &:hover {
+    color: unset;
+  }
+}
+

@@ -1,17 +1,18 @@
 <template>
-  <div id="app">
-    <landing-page></landing-page>
+  <div class="app">
+    <router-view/>
   </div>
 </template>
 
-<script>
-  import landingPage from './components/LandingPage.vue'
-  export default {
-    components: {landingPage},
-    name: 'gitlab-discovery'
-  }
-</script>
+<style lang="scss">
+  // Import the NUIverse
+  @import './assets/nuiverse/nuiverse';
 
-<style>
-  /* CSS */
+  .app {
+    color: #2c3e50;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+  }
 </style>
