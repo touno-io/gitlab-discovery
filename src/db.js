@@ -8,7 +8,7 @@ db.version(1).stores({
 });
 
 dbUsers.version(1).stores({
-  users: 'id++, login, name, avatar_url, email, id, created_at, updated_at',
+  users: 'id++, login, name, avatar_url, email, id, token, created_at, updated_at',
 });
 
 db.open();

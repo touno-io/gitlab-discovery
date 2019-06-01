@@ -5,6 +5,7 @@
 */
 
 /* eslint no-shadow: ["error", { "allow": ["state"] }] */
+/* eslint-disable no-param-reassign */
 
 import { db } from '../../db';
 
@@ -23,9 +24,19 @@ const mutations = {
   REMOVE_REPOSITORY(state, index) {
     state.repositories.splice(index, 1);
   },
+  FETCH_REPOSITORIES(state, repositories) {
+    state.repositories = repositories;
+  },
 };
 
 const actions = {
+  INIT(context) {
+    context.dispatch('FETCH_REPOSITORIES');
+  },
+  async FETCH_REPOSITORIES({ commit }) {
+    const repositories = await db.repositories;
+    commit('FETCH_REPOSITORIES', repositories);
+  },
   async ADD_REPOSITORY({ commit }, repo) {
     let id;
     try {

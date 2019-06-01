@@ -4,18 +4,28 @@
 * found in the LICENSE file.
 */
 
+// Core
 import Vue          from 'vue';
 import Vuex         from 'vuex';
 
 // Modules
+import database     from './modules/database';
 import users        from './modules/users';
 import repositories from './modules/repositories';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
+  state: database.state,
+  getters: database.getters,
+  mutations: database.mutations,
+  actions: database.actions,
+
   modules: {
     users,
     repositories,
   },
 });
+
+store.dispatch('INIT');
+export default store;

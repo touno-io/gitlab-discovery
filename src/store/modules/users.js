@@ -30,6 +30,9 @@ const mutations = {
 };
 
 const actions = {
+  INIT(context) {
+    context.dispatch('FETCH_USERS');
+  },
   async FETCH_USERS({ commit }) {
     const users = await dbUsers.users
       .orderBy('created_at')
@@ -38,7 +41,7 @@ const actions = {
 
     commit('FETCH_USERS', users);
   },
-  async ADD_USER({ commit }, user) {
+  async ADD_USER(context, user) {
     let id;
     user.created_at = new Date().toISOString();
     user.updated_at = null;
@@ -50,8 +53,11 @@ const actions = {
       console.log(err);
     }
 
-    commit('ADD_USER', user);
-    localStorage.setItem('current_user_id', id);
+    context.commit('ADD_USER', user);
+    context.dispatch('INIT', null, { root: true });
+    context.dispatch('UPDATE_SIGNUP_PROGRESS', null, { root: true });
+    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('id_user', id);
     console.log(`User added ${id}`);
   },
 };

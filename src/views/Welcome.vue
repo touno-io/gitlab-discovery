@@ -8,40 +8,37 @@
   <div class="welcome">
     <div class="form">
       <div class="form-container columns align-items-center text-left">
-
-        <div v-if="step == 0">
-          <div
-            v-show="currentWindow == 'welcome'"
-            class="column full p-4 px-6">
-            <h2>{{this.$i18n.t('welcome_title')}}</h2>
-            <span class="py-4 d-block"> {{this.$i18n.t('welcome_about')}} </span>
-            <div class="divider"></div>
-            <span class="py-2 d-block">{{this.$i18n.t('new_question')}} <span class="a" @click="openLink('https://gitlab.com/users/sign_in#register-pane')">{{this.$i18n.t('create_account')}}</span>.</span>
-            <a class="d-inline-block py-2" @click="sign()">{{this.$i18n.t('sign_in_gitlab')}}</a>
-          </div>
-
-          <div
-            v-show="currentWindow == 'sign_in_win'"
-            class="column full p-4 px-6">
-            <h2>{{this.$i18n.t('sign_in_title')}}</h2>
-            <span class="py-2">{{this.$i18n.t('welcome_insert_infos')}}</span>
-
-            <input class="d-block my-2" type="text" v-model="token" :placeholder="this.$i18n.t('access_token')">
-            <small v-if="errorToken == true" class="d-block mt-1 text-danger">{{ this.$i18n.t('invalid_token_message') }}</small>
-
-            <input class="d-block my-2" type="text" v-model="email" :placeholder="this.$i18n.t('email')">
-            <small v-if="errorEmail == true" class="d-block mt-1 text-danger">{{ this.$i18n.t('invalid_email_message') }}</small>
-
-            <input class="d-block my-2" type="text" v-model="nameUser" :placeholder="this.$i18n.t('name')">
-            <small v-if="errorNameUser == true" class="d-block mt-1 text-danger">{{ this.$i18n.t('invalid_nameuser_message') }}</small>
-
-            <button class="button d-inline-block my-3" @click="addUser">{{this.$i18n.t('sign_in_title')}}</button>
-            <small class="d-block mt-4 text-warning">{{this.$i18n.t('welcome_beta_warning')}}</small>
-
-          </div>
+        <div
+          v-show="signUpProgress == 0"
+          class="column full p-4 px-6">
+          <h2>{{this.$i18n.t('welcome_title')}}</h2>
+          <span class="py-4 d-block"> {{this.$i18n.t('welcome_about')}} </span>
+          <div class="divider"></div>
+          <span class="py-2 d-block">{{this.$i18n.t('new_question')}} <a href="#" class="a" @click="openLink('https://gitlab.com/users/sign_in#register-pane')">{{this.$i18n.t('create_account')}}</a>.</span>
+          <a class="d-inline-block py-2" href="#" @click="sign()">{{this.$i18n.t('sign_in_gitlab')}}</a>
         </div>
 
-        <div v-if="step == 1">
+        <div
+          v-show="signUpProgress == 1"
+          class="column full p-4 px-6">
+          <h2>{{this.$i18n.t('sign_in_title')}}</h2>
+          <span class="py-2">{{this.$i18n.t('welcome_insert_infos')}}</span>
+
+          <input class="d-block my-2" type="text" v-model="token" :placeholder="this.$i18n.t('access_token')">
+          <small v-if="errorToken == true" class="d-block mt-1 text-danger">{{ this.$i18n.t('invalid_token_message') }}</small>
+
+          <input class="d-block my-2" type="text" v-model="email" :placeholder="this.$i18n.t('email')">
+          <small v-if="errorEmail == true" class="d-block mt-1 text-danger">{{ this.$i18n.t('invalid_email_message') }}</small>
+
+          <input class="d-block my-2" type="text" v-model="nameUser" :placeholder="this.$i18n.t('name')">
+          <small v-if="errorNameUser == true" class="d-block mt-1 text-danger">{{ this.$i18n.t('invalid_nameuser_message') }}</small>
+
+          <button class="button d-inline-block my-3" @click="addUser">{{this.$i18n.t('sign_in_title')}}</button>
+          <small class="d-block mt-4 text-warning">{{this.$i18n.t('welcome_beta_warning')}}</small>
+
+        </div>
+
+        <div v-if="signUpProgress == 2">
           <h2>{{this.$i18n.t('configure_git_title')}}</h2>
           <span class="py-2 mb-3 d-block">{{this.$i18n.t('configure_git_desc')}}</span>
           <span class="d-block my-2">Name</span>
@@ -57,7 +54,7 @@
             <small class="example-commit-header">{{this.$i18n.t('example_commit')}}</small>
             <div class="example-commit-container">
               <small class="example-commit-title">{{this.$i18n.t('example_commit_title')}}</small>
-              <small class="example-commit-username">{{ nameUser }}</small><small class="example-commit-time">{{this.$i18n.t('example_commit_time')}}</small>
+              <div><img class="example-commit-avatar" :src="user.avatar_url + '?private_token=' + user.token"><small class="example-commit-username">{{ gitlabUserName }} </small><small class="example-commit-time">{{this.$i18n.t('example_commit_time')}}</small></div>
             </div>
           </div>
         </div>
@@ -81,9 +78,9 @@ export default {
   name: 'welcome',
   data() {
     return {
-      token: 'FhTnCHskarNKMgHgxFRd',
-      email: 'patrickalima@nuinalp.com',
-      nameUser: 'patrickalima98',
+      token: '',
+      email: '',
+      nameUser: '',
       errorEmail: false,
       errorNameUser: false,
       errorToken: false,
@@ -93,12 +90,29 @@ export default {
       currentWindow: 'welcome',
     };
   },
+  created() {
+    this.gitlabUserName = this.user.name || null;
+    this.gitlabUserEmail = this.user.email || null;
+  },
+  watch: {
+    currentUser: function () {
+      console.log(this.currentUser);
+    }
+  },
+  computed: {
+    ...mapGetters({
+      currentUser: 'idUser',
+      user: 'user',
+      signUpProgress: 'signUpProgress',
+    }),
+  },
   methods: {
     ...mapActions({
      ADD_USER: 'users/ADD_USER',
+     NEXT_WINDOW: 'UPDATE_SIGNUP_PROGRESS',
     }),
     sign() {
-      this.currentWindow = 'sign_in_win';
+      this.NEXT_WINDOW();
     },
     openLink(url) {
       shell.openExternal(url);
@@ -143,7 +157,10 @@ export default {
             avatar_url: data.avatar_url,
             email: data.email,
             id: data.id,
+            token: this.token,
           });
+          this.gitlabUserName = data.name;
+          this.gitlabUserEmail = data.email;
         });
     },
     backStep(step) {
@@ -235,6 +252,14 @@ export default {
     .example-commit-time {
       color: rgb(85, 85, 85);
       font-family: 'FiraGO Light';
+    }
+
+    .example-commit-avatar {
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 6px;
+      vertical-align: middle;
+      width: 25px;
     }
   }
 }
