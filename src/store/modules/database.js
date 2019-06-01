@@ -18,6 +18,7 @@ const state = {
   user: {
     name: '',
     email: '',
+    avatar_url: '',
   },
   theme: 0, // 0 is the default light theme
   lastCloneLocation: null,
@@ -33,7 +34,9 @@ const getters = {
 
 const mutations = {
   SET_CONFIG(state, config) {
-    state.user = JSON.parse(config.user);
+    if (config.user) {
+      state.user = JSON.parse(config.user);
+    }
     state.idUser = config.idUser;
     state.theme = config.theme;
     state.lastCloneLocation = config.lastCloneLocation;
@@ -54,8 +57,8 @@ const actions = {
   },
   LOAD_CONFIG({ commit }) {
     const config = {
-      user: localStorage.getItem('user') || null,
-      idUser: localStorage.getItem('id_user') || null,
+      user: localStorage.getItem('user'),
+      idUser: localStorage.getItem('id_user'),
       theme: localStorage.getItem('theme') || 0, // 0 is the default light theme
       lastCloneLocation: localStorage.getItem('last_clone_location'),
       signUpProgress: localStorage.getItem('sign_up_progress') || 0,

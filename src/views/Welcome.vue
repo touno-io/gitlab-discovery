@@ -27,15 +27,12 @@
           <input class="d-block my-2" type="text" v-model="token" :placeholder="this.$i18n.t('access_token')">
           <small v-if="errorToken == true" class="d-block mt-1 text-danger">{{ this.$i18n.t('invalid_token_message') }}</small>
 
-          <input class="d-block my-2" type="text" v-model="email" :placeholder="this.$i18n.t('email')">
-          <small v-if="errorEmail == true" class="d-block mt-1 text-danger">{{ this.$i18n.t('invalid_email_message') }}</small>
-
-          <input class="d-block my-2" type="text" v-model="nameUser" :placeholder="this.$i18n.t('name')">
-          <small v-if="errorNameUser == true" class="d-block mt-1 text-danger">{{ this.$i18n.t('invalid_nameuser_message') }}</small>
-
-          <button class="button d-inline-block my-3" @click="addUser">{{this.$i18n.t('sign_in_title')}}</button>
-          <small class="d-block mt-4 text-warning">{{this.$i18n.t('welcome_beta_warning')}}</small>
-
+          <button :class="[getUser ? 'disabled loading' : '', token == '' ? 'disabled' : '']" class="button signin-btn d-inline-block my-3" @click="addUser">
+            {{this.$i18n.t('sign_in_title')}}
+            <div class="progress">
+              <div class="progress-bar loading progressbar-primary" role="progressbar"></div>
+            </div>
+          </button>
         </div>
 
         <div v-if="signUpProgress == 2">
@@ -88,16 +85,12 @@ export default {
       gitlabUserName: '',
       gitlabUserEmail: '',
       currentWindow: 'welcome',
+      getUser: false,
     };
   },
   created() {
     this.gitlabUserName = this.user.name || null;
     this.gitlabUserEmail = this.user.email || null;
-  },
-  watch: {
-    currentUser: function () {
-      console.log(this.currentUser);
-    }
   },
   computed: {
     ...mapGetters({
@@ -119,31 +112,33 @@ export default {
     },
     addUser() {
       // eslint-disable-next-line
+      if (this.getUser)
+        return false;
+      
       const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
       this.errorToken = false;
-      this.errorNameUser = false;
-      this.errorEmail = false;
-
+      
       if (this.token === '') {
         this.errorToken = true;
         return;
       }
 
-      if (this.nameUser === '') {
-        this.errorNameUser = true;
-        return;
-      }
+      // if (this.nameUser === '') {
+      //   this.errorNameUser = true;
+      //   return;
+      // }
 
-      if (!emailRegex.test(this.email)) {
-        this.errorEmail = true;
-        return;
-      }
+      // if (!emailRegex.test(this.email)) {
+      //   this.errorEmail = true;
+      //   return;
+      // }
 
       this.getGitlabConn();
       // this.step = 1;
     },
     getGitlabConn() {
+      this.getUser = true;
       const gitlab = new Gitlab({
         token: this.token, // Can be created in your profile.
       });
@@ -161,6 +156,7 @@ export default {
           });
           this.gitlabUserName = data.name;
           this.gitlabUserEmail = data.email;
+          this.getUser = false;
         });
     },
     backStep(step) {
@@ -173,6 +169,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../assets/nuiverse/utils/_variables';
+
 .welcome {
   &::before {
     background-image: url('../assets/gitlab-icon-pattern-header.svg');
@@ -261,6 +259,27 @@ export default {
       vertical-align: middle;
       width: 25px;
     }
+  }
+}
+
+.signin-btn {
+  .progress {
+    display: none;
+  }
+}
+
+.disabled {
+  background-color: rgba($primary, 0.3);
+  border-color: rgba($primary, 0.3);
+
+  &.loading .progress {
+    bottom: 4px;
+    display: block;
+    height: 2px;
+    left: 0;
+    margin: 0 9px;
+    position: absolute;
+    width: calc(100% - 20px);
   }
 }
 </style>

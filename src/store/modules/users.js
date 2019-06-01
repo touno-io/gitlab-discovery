@@ -23,6 +23,7 @@ const mutations = {
   },
   ADD_USER(state, user) {
     state.users.unshift(user);
+    localStorage.setItem('user', JSON.stringify(user));
   },
   REMOVE_USER(state, index) {
     state.users.splice(index, 1);
@@ -52,12 +53,10 @@ const actions = {
       console.log('Oops, failed to add user');
       console.log(err);
     }
-
+    localStorage.setItem('id_user', id);
     context.commit('ADD_USER', user);
     context.dispatch('INIT', null, { root: true });
     context.dispatch('UPDATE_SIGNUP_PROGRESS', null, { root: true });
-    localStorage.setItem('user', JSON.stringify(user));
-    localStorage.setItem('id_user', id);
     console.log(`User added ${id}`);
   },
 };
