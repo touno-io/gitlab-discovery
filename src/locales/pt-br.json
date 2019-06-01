@@ -6,7 +6,7 @@
   "create_account": "Crie sua conta gratuita",
   "sign_in_gitlab": "Entrar na GitLab.com",
   "sign_in_title": "Entrar",
-  "welcome_insert_infos": "Por favor insira seu Token de acesso, nome and e-mail",
+  "welcome_insert_infos": "Por favor insira seu Token de acesso",
   "welcome_beta_warning": "Nota: Esta maneira de entrar é um método alternativo usado somente nesta versão beta para testes.",
   "access_token": "token de acesso",
   "email": "e-mail",
