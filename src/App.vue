@@ -1,5 +1,11 @@
+<!--
+ Copyright (c) 2019 The Nuinalp Authors. All rights reserved.
+ Use of this source code is governed by a BSD-style license that can be
+ found in the LICENSE file.
+-->
+
 <template>
-  <div class="app">
+  <div id="app">
     <router-view/>
   </div>
 </template>
@@ -16,3 +22,9 @@
     text-align: center;
   }
 </style>
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+
+@Component
+export default class App extends Vue {}
+</script>

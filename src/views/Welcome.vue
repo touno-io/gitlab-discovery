@@ -60,112 +60,106 @@
   </div>
 </template>
 
-<script>
-// import Vue                        from 'vue';
-import { mapGetters, mapActions } from 'vuex';
-// import { shell }                  from 'electron';
-const shell = require('electron').shell;
-// import * as fs                    from 'fs';
-// import * as path                  from 'path';
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import { shell }          from 'electron';
+import { Getter, Action } from 'vuex-class';
+
 // tslint:disable-next-line
-// const Gitlab = require('gitlab').default;
-import { Gitlab } from 'gitlab';
+const Gitlab = require('gitlab').default;
 
-export default {
-  name: 'welcome',
-  data() {
-    return {
-      token: '',
-      email: '',
-      nameUser: '',
-      errorEmail: false,
-      errorNameUser: false,
-      errorToken: false,
-      step: 0,
-      gitlabUserName: '',
-      gitlabUserEmail: '',
-      currentWindow: 'welcome',
-      getUser: false,
-    };
-  },
-  created() {
-    this.gitlabUserName = this.user.name || null;
-    this.gitlabUserEmail = this.user.email || null;
-  },
-  computed: {
-    ...mapGetters({
-      currentUser: 'idUser',
-      user: 'user',
-      signUpProgress: 'signUpProgress',
-    }),
-  },
-  methods: {
-    ...mapActions({
-     ADD_USER: 'users/ADD_USER',
-     NEXT_WINDOW: 'UPDATE_SIGNUP_PROGRESS',
-    }),
-    sign() {
-      this.NEXT_WINDOW();
-    },
-    openLink(url) {
-      shell.openExternal(url);
-    },
-    addUser() {
-      // eslint-disable-next-line
-      if (this.getUser)
-        return false;
-      
-      const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+@Component
+export default class Home extends Vue {
+  // Getters
+  @Getter('idUser') private currentUser!: number;
+  @Getter('user') private user!: any;
+  @Getter('signUpProgress') private signUpProgress!: number;
 
-      this.errorToken = false;
-      
-      if (this.token === '') {
-        this.errorToken = true;
-        return;
-      }
+  // Actions
+  @Action('users/ADD_USER') private ADD_USER: any;
+  @Action('UPDATE_SIGNUP_PROGRESS') private NEXT_WINDOW: any;
 
-      // if (this.nameUser === '') {
-      //   this.errorNameUser = true;
-      //   return;
-      // }
+  // Data property
+  private token!: string;
+  private email!: string;
+  private nameUser!: string;
+  private errorEmail!: boolean;
+  private errorNameUser!: boolean;
+  private errorToken!: boolean;
+  private gitlabUserName!: string;
+  private gitlabUserEmail!: string;
+  private currentWindow!: string;
+  private getUser!: boolean;
+  private step!: number;
 
-      // if (!emailRegex.test(this.email)) {
-      //   this.errorEmail = true;
-      //   return;
-      // }
+  constructor() {
+    super();
+    this.currentWindow = 'welcome';
+    this.token = '';
+    this.errorToken = false;
+    this.getUser = false;
+  }
 
-      this.getGitlabConn();
-      // this.step = 1;
-    },
-    getGitlabConn() {
-      this.getUser = true;
-      const gitlab = new Gitlab({
-        token: this.token, // Can be created in your profile.
-      });
-      
-      gitlab.Users.current()
-        .then((data) => {
-          console.log(data);
-          this.ADD_USER({
-            login: data.username,
-            name: data.name,
-            avatar_url: data.avatar_url,
-            email: data.email,
-            id: data.id,
-            token: this.token,
-          });
-          this.gitlabUserName = data.name;
-          this.gitlabUserEmail = data.email;
-          this.getUser = false;
+  // Lifecycle hook
+  private mounted() {
+    this.gitlabUserName = this.user.name;
+    this.gitlabUserEmail = this.user.email;
+  }
+
+  private sign() {
+    this.NEXT_WINDOW();
+  }
+
+  private openLink(url: string) {
+    shell.openExternal(url);
+  }
+
+  private addUser() {
+    if (this.getUser) {
+      return false;
+    }
+    // tslint:disable-next-line
+    const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    this.errorToken = false;
+
+    if (this.token === '') {
+      this.errorToken = true;
+      return;
+    }
+    this.getGitlabConn();
+  }
+
+  private getGitlabConn() {
+    this.getUser = true;
+    const gitlab = new Gitlab({
+      token: this.token, // Can be created in your profile.
+    });
+
+    gitlab.Users.current()
+      .then((data: any) => {
+        console.log(data);
+        this.ADD_USER({
+          login: data.username,
+          name: data.name,
+          avatar_url: data.avatar_url,
+          email: data.email,
+          id: data.id,
+          token: this.token,
         });
-    },
-    backStep(step) {
-      this.step = step;
-      this.gitlabUserName = '';
-      this.gitlabUserEmail = '';
-    },
-  },
-};
+        this.gitlabUserName = data.name;
+        this.gitlabUserEmail = data.email;
+        this.getUser = false;
+      });
+  }
+
+  private backStep(step: number) {
+    this.step = step;
+    this.gitlabUserName = '';
+    this.gitlabUserEmail = '';
+  }
+
+}
 </script>
 
 <style lang="scss">
@@ -283,3 +277,4 @@ export default {
   }
 }
 </style>
+
