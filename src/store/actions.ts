@@ -4,6 +4,8 @@
  * found in the LICENSE file.
  */
 
+ // tslint:disable function-name
+
 import { ActionTree } from 'vuex';
 import { RootState }  from './types';
 
@@ -31,7 +33,7 @@ export const actions: ActionTree<RootState, any> = {
     commit('SET_CONFIG', config);
   },
   LOAD_DB(context) {
-    DB_INIT.forEach((action) => context.dispatch(action));
+    DB_INIT.forEach(action => context.dispatch(action));
   },
   UPDATE_SIGNUP_PROGRESS({ commit }) {
     commit('UPDATE_SIGNUP_PROGRESS');

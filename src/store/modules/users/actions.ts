@@ -4,6 +4,8 @@
  * found in the LICENSE file.
  */
 
+// tslint:disable function-name
+
 import { ActionTree } from 'vuex';
 import { IState }     from './types';
 import { RootState }  from '../../types';

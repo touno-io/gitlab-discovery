@@ -4,7 +4,7 @@
  * found in the LICENSE file.
  */
 
-import Vue from 'vue';
+import Vue      from 'vue';
 import Router   from 'vue-router';
 import Welcome  from './views/Welcome.vue';
 

@@ -17,6 +17,9 @@ import { mutations }    from './mutations';
 
 Vue.use(Vuex);
 const store = new Vuex.Store<RootState>({
+  getters,
+  actions,
+  mutations,
   state: {
     user: {
       name: '',
@@ -28,9 +31,6 @@ const store = new Vuex.Store<RootState>({
     idUser: 0,
     signUpProgress: 0,
   },
-  getters,
-  actions,
-  mutations,
   modules: {
     users,
     repositories,

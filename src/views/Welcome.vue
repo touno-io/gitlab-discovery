@@ -69,7 +69,7 @@ import { Getter, Action } from 'vuex-class';
 const Gitlab = require('gitlab').default;
 
 @Component
-export default class Home extends Vue {
+export default class Welcome extends Vue {
   // Getters
   @Getter('idUser') private currentUser!: number;
   @Getter('user') private user!: any;
@@ -96,6 +96,8 @@ export default class Home extends Vue {
     super();
     this.currentWindow = 'welcome';
     this.token = '';
+    this.gitlabUserName = '';
+    this.gitlabUserEmail = '';
     this.errorToken = false;
     this.getUser = false;
   }

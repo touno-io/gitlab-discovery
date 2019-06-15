@@ -4,6 +4,8 @@
  * found in the LICENSE file.
  */
 
+// tslint:disable function-name
+
 import { MutationTree } from 'vuex';
 import { RootState }    from './types';
 

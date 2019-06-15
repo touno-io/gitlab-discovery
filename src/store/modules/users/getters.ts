@@ -9,5 +9,5 @@ import { IState }     from './types';
 import { RootState }  from '../../types';
 
 export const getters: GetterTree<IState, RootState> = {
-  users: (state) => state.users,
+  users: state => state.users,
 };

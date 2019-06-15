@@ -9,5 +9,5 @@ import { RepositoriesState }  from './types';
 import { RootState }          from '../../types';
 
 export const getters: GetterTree<RepositoriesState, RootState> = {
-  projects: (state) => state.repositories,
+  projects: state => state.repositories,
 };
