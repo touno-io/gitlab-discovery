@@ -9,8 +9,10 @@ export interface IUser {
   name: string;
   avatar_url: string;
   email: string;
-  id: number;
+  id_gitlab: number;
   token: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface IState {

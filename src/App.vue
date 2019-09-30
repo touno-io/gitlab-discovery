@@ -1,30 +1,35 @@
-<!--
- Copyright (c) 2019 The Nuinalp Authors. All rights reserved.
- Use of this source code is governed by a BSD-style license that can be
- found in the LICENSE file.
--->
-
 <template>
-  <div id="app">
+  <div id="app" class="d-flex">
     <router-view/>
   </div>
 </template>
 
-<style lang="scss">
-  // Import the NUIverse
-  @import './assets/nuiverse/nuiverse';
-
-  .app {
-    color: #2c3e50;
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-  }
-</style>
-<script lang="ts">
+<script lang='ts'>
+import router from './router';
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component
-export default class App extends Vue {}
+export default class Home extends Vue {
+  mounted() {
+    if (localStorage.getItem('initial_config') === 'complete') {
+      router.push('/home');
+    }
+  }
+}
+
+
 </script>
+
+<style lang="scss">
+@import 'assets/stylesheets/framework';
+// stylelint-disable selector-max-id
+
+html,
+body,
+#app {
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+
+</style>

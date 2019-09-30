@@ -7,51 +7,91 @@
 <template>
   <div class="welcome">
     <div class="form">
-      <div class="form-container columns align-items-center text-left">
-        <div
-          v-show="signUpProgress == 0"
-          class="column full p-4 px-6">
+      <div class="d-flex h-100 align-items-center text-left">
+        <div v-show="signUpProgress == 0" class="full p-4 px-6">
           <h2>{{this.$i18n.t('welcome_title')}}</h2>
-          <span class="py-4 d-block"> {{this.$i18n.t('welcome_about')}} </span>
+          <span class="py-4 d-block">{{this.$i18n.t('welcome_about')}}</span>
           <div class="divider"></div>
-          <span class="py-2 d-block">{{this.$i18n.t('new_question')}} <a href="#" class="a" @click="openLink('https://gitlab.com/users/sign_in#register-pane')">{{this.$i18n.t('create_account')}}</a>.</span>
+          <span class="py-2 d-block">
+            {{this.$i18n.t('new_question')}}
+            <a
+              href="#"
+              class="a"
+              @click="openLink('https://gitlab.com/users/sign_in#register-pane')"
+            >{{this.$i18n.t('create_account')}}</a>.
+          </span>
           <a class="d-inline-block py-2" href="#" @click="sign()">{{this.$i18n.t('sign_in_gitlab')}}</a>
         </div>
 
-        <div
-          v-show="signUpProgress == 1"
-          class="column full p-4 px-6">
+        <div v-show="signUpProgress == 1" class="full p-4 px-6">
           <h2>{{this.$i18n.t('sign_in_title')}}</h2>
           <span class="py-2">{{this.$i18n.t('welcome_insert_infos')}}</span>
 
-          <input class="d-block my-2" type="text" v-model="token" :placeholder="this.$i18n.t('access_token')">
-          <small v-if="errorToken == true" class="d-block mt-1 text-danger">{{ this.$i18n.t('invalid_token_message') }}</small>
-
-          <button :class="[getUser ? 'disabled loading' : '', token == '' ? 'disabled' : '']" class="button signin-btn d-inline-block my-3" @click="addUser">
+          <GlFormInput
+            class="d-block my-2"
+            type="text"
+            v-model="token"
+            :placeholder="this.$i18n.t('access_token')"
+          />
+          <small
+            v-if="errorToken == true"
+            class="d-block mt-1 text-danger"
+          >{{ this.$i18n.t('invalid_token_message') }}</small>
+          <GlButton
+            class="d-inline-block my-3"
+            :disabled="token == ''"
+            @click="addUser"
+            variant="success"
+          >
             {{this.$i18n.t('sign_in_title')}}
-            <div class="progress">
-              <div class="progress-bar loading progressbar-primary" role="progressbar"></div>
-            </div>
-          </button>
+          </GlButton>
         </div>
 
-        <div v-if="signUpProgress == 2">
+        <div v-if="signUpProgress == 2" class="full p-4 px-6">
           <h2>{{this.$i18n.t('configure_git_title')}}</h2>
           <span class="py-2 mb-3 d-block">{{this.$i18n.t('configure_git_desc')}}</span>
           <span class="d-block my-2">Name</span>
-          <input type="text" placeholder="Your name" v-model="gitlabUserName"/>
+          <GlFormInput
+            class="d-block my-2"
+            placeholder="Your name" 
+            v-model="gitlabUserName"
+            type="text"
+          />
           <span class="d-block my-2">Email</span>
-          <input type="text" placeholder="Your email" v-model="gitlabUserEmail"/>
+          <GlFormInput
+            class="d-block my-2"
+            placeholder="Your email" 
+            v-model="gitlabUserEmail"
+            type="text"
+          />
           <div class="d-block my-3">
-            <button class="button primary-outline" @click="backStep(0)">Cancel</button>
-            <button class="button ml-2">Next</button>
+          <GlButton
+            class="d-inline-block my-3"
+            @click="backStep(0)"
+          >
+            Cancel
+          </GlButton>
+          <GlButton
+            class="d-inline-block ml-2 my-3"
+            @click="setGitConfig"
+            variant="success"
+          >
+            Next
+          </GlButton>
           </div>
 
           <div class="example-commit">
             <small class="example-commit-header">{{this.$i18n.t('example_commit')}}</small>
             <div class="example-commit-container">
               <small class="example-commit-title">{{this.$i18n.t('example_commit_title')}}</small>
-              <div><img class="example-commit-avatar" :src="user.avatar_url + '?private_token=' + user.token"><small class="example-commit-username">{{ gitlabUserName }} </small><small class="example-commit-time">{{this.$i18n.t('example_commit_time')}}</small></div>
+              <div>
+                <img
+                  class="example-commit-avatar"
+                  :src="user.avatar_url + '?private_token=' + user.token"
+                />
+                <small class="example-commit-username">{{ gitlabUserName }}</small>
+                <small class="example-commit-time">{{this.$i18n.t('example_commit_time')}}</small>
+              </div>
             </div>
           </div>
         </div>
@@ -61,14 +101,21 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { shell }          from 'electron';
-import { Getter, Action } from 'vuex-class';
+import { Component, Vue }       from 'vue-property-decorator';
+import { shell }                from 'electron';
+import { Getter, Action }       from 'vuex-class';
+import Log                      from  '../lib/log';
+import { GlFormInput, GlButton } from '@gitlab/ui';
+import { Gitlab }               from 'gitlab';
+import { setGlobalConfigValue } from '../lib/git';
+import router                   from '../router'
 
-// tslint:disable-next-line
-const Gitlab = require('gitlab').default;
-
-@Component
+@Component({
+  components: {
+    GlFormInput,
+    GlButton,
+  }
+})
 export default class Welcome extends Vue {
   // Getters
   @Getter('idUser') private currentUser!: number;
@@ -78,6 +125,7 @@ export default class Welcome extends Vue {
   // Actions
   @Action('users/ADD_USER') private ADD_USER: any;
   @Action('UPDATE_SIGNUP_PROGRESS') private NEXT_WINDOW: any;
+  @Action('FINISH_INITIAL_CONFIG') private finish: any;
 
   // Data property
   private token!: string;
@@ -140,13 +188,12 @@ export default class Welcome extends Vue {
 
     gitlab.Users.current()
       .then((data: any) => {
-        console.log(data);
         this.ADD_USER({
           login: data.username,
           name: data.name,
           avatar_url: data.avatar_url,
           email: data.email,
-          id: data.id,
+          id_gitlab: data.id,
           token: this.token,
         });
         this.gitlabUserName = data.name;
@@ -161,11 +208,23 @@ export default class Welcome extends Vue {
     this.gitlabUserEmail = '';
   }
 
+  private setGitConfig() {
+    const config = [
+      setGlobalConfigValue('user.name', this.nameUser),
+      setGlobalConfigValue('user.email', this.email),
+    ];
+    // Go to home app.
+    Promise.all(config).then(() => {
+      this.finish();
+      router.push('/home');
+    });
+  }
+
 }
 </script>
 
 <style lang="scss">
-@import '../assets/nuiverse/utils/_variables';
+// @import '../assets/nuiverse/utils/_variables';
 
 .welcome {
   &::before {
@@ -245,7 +304,6 @@ export default class Welcome extends Vue {
     .example-commit-username,
     .example-commit-time {
       color: rgb(85, 85, 85);
-      font-family: 'FiraGO Light';
     }
 
     .example-commit-avatar {
@@ -264,19 +322,19 @@ export default class Welcome extends Vue {
   }
 }
 
-.disabled {
-  background-color: rgba($primary, 0.3);
-  border-color: rgba($primary, 0.3);
+// .disabled {
+//   background-color: rgba($primary, 0.3);
+//   border-color: rgba($primary, 0.3);
 
-  &.loading .progress {
-    bottom: 4px;
-    display: block;
-    height: 2px;
-    left: 0;
-    margin: 0 9px;
-    position: absolute;
-    width: calc(100% - 20px);
-  }
-}
+//   &.loading .progress {
+//     bottom: 4px;
+//     display: block;
+//     height: 2px;
+//     left: 0;
+//     margin: 0 9px;
+//     position: absolute;
+//     width: calc(100% - 20px);
+//   }
+// }
 </style>
 

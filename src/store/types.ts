@@ -16,4 +16,5 @@ export interface RootState {
   lastCloneLocation: string;
   idUser: number;
   signUpProgress: number;
+  initialConfig: undefined | 'complete';
 }

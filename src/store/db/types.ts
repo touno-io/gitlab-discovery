@@ -5,7 +5,7 @@
  */
 
 export interface IRepositories {
-  id: string;
+  id?: number;
   gitLabRepositoryID: number;
   name: string;
   path: string;
@@ -14,12 +14,12 @@ export interface IRepositories {
 }
 
 export interface IUsers {
-  id: string;
+  id?: number;
   login: string;
   name: string;
   avatar_url: string;
   email: string;
-  id_gitlab: string;
+  id_gitlab: number;
   token: string;
   created_at: string;
   updated_at: string;

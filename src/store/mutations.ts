@@ -24,4 +24,8 @@ export const mutations: MutationTree<RootState> = {
     state.signUpProgress = newProgress;
     localStorage.setItem('sign_up_progress', String(newProgress));
   },
+  FINISH_INITIAL_CONFIG(state: RootState) {
+    state.initialConfig = 'complete';
+    localStorage.setItem('initial_config', 'complete');
+  }
 };

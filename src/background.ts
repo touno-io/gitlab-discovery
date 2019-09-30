@@ -1,4 +1,3 @@
-/* tslint:disable */
 'use strict'
 
 import { app, protocol, BrowserWindow } from 'electron'
@@ -60,10 +59,11 @@ app.on('ready', async () => {
   if (isDevelopment && !process.env.IS_TEST) {
     // Install Vue Devtools
     try {
-      await installVueDevtools()
-    } catch (e) {
-      console.error('Vue Devtools failed to install:', e.toString())
-    }
+  await installVueDevtools()
+} catch (e) {
+  console.error('Vue Devtools failed to install:', e.toString())
+}
+
   }
   createWindow()
 })

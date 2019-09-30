@@ -6,10 +6,11 @@
 
 // tslint:disable function-name
 
-import { ActionTree } from 'vuex';
-import { IState }     from './types';
-import { RootState }  from '../../types';
-import { db }         from '../../db';
+import { ActionTree }     from 'vuex';
+import { IState, IUser }  from './types';
+import { RootState }      from '../../types';
+import { db }             from '../../db';
+import Log                from '../../../lib/log';
 
 export const actions: ActionTree<IState, RootState> = {
   INIT(context) {
@@ -23,10 +24,10 @@ export const actions: ActionTree<IState, RootState> = {
 
     commit('FETCH_USERS', users);
   },
-  async ADD_USER(context, user) {
+  async ADD_USER(context, user: IUser) {
     let id: number;
     user.created_at = new Date().toISOString();
-    user.updated_at = null;
+    user.updated_at = '';
 
     try {
       id = await db.users.add(user);
@@ -34,10 +35,10 @@ export const actions: ActionTree<IState, RootState> = {
       context.commit('ADD_USER', user);
       context.dispatch('INIT', null, { root: true });
       context.dispatch('UPDATE_SIGNUP_PROGRESS', null, { root: true });
-      console.log(`User added ${id}`);
+      Log.info('Store action', `User added ${id}`);
     } catch (err) {
-      console.log('Oops, failed to add user');
-      console.log(err);
+      Log.error('Store action', 'Oops, failed to add user');
+      Log.error('Store action', err);
     }
   },
 };

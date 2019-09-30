@@ -10,6 +10,7 @@ import { ActionTree }         from 'vuex';
 import { RepositoriesState }  from './types';
 import { RootState }          from '../../types';
 import { db }                 from '../../db';
+import Log                    from '../../../lib/log';
 
 export const actions: ActionTree<RepositoriesState, RootState> = {
   INIT(context) {
@@ -24,11 +25,11 @@ export const actions: ActionTree<RepositoriesState, RootState> = {
     try {
       id = await db.repositories.add(repo);
     } catch (err) {
-      console.log('Oops, failed to add repository');
-      console.log(err);
+      Log.error('Store action', 'Oops, failed to add repository');
+      Log.error('Store action', err);
     }
 
     commit('ADD_REPOSITORY', repo);
-    console.log(`Repository added ${id}`);
+    Log.info('Store action', `Repository added ${id}`);
   },
 };

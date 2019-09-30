@@ -30,6 +30,7 @@ const store = new Vuex.Store<RootState>({
     lastCloneLocation: '',
     idUser: 0,
     signUpProgress: 0,
+    initialConfig: undefined,
   },
   modules: {
     users,
